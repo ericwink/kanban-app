@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
+
+:root {
+  /* css variables */
+  /* primary colors */
+  --clr-primary-300: #a8a4ff;
+  --clr-primary-400: #635fc7;
+  /* secondary colors */
+  --clr-secondary-300: #ff9898;
+  --clr-secondary-400: #ea5555;
+  /* neutral colors */
+  --clr-neutral-100: #fff;
+  --clr-neutral-200: #f4f7fd;
+  --clr-neutral-300: #e4ebfa;
+  --clr-neutral-400: #828fa3;
+  --clr-neutral-500: #3e3f4e;
+  --clr-neutral-600: #2b2c37;
+  --clr-neutral-700: #20212c;
+  --clr-neutral-800: #000112;
+
+  /* font family */
+  --ff-body: "Plus Jakarta Sans", sans-serif;
+
+  /* font weights */
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  /* font sizes */
+  --fs-100: 0.75rem; /* 12px */
+  --fs-200: 0.813rem; /* 13px */
+  --fs-300: 0.938rem; /* 15px */
+  --fs-400: 1.125rem; /* 18px */
+  --fs-500: 1.5rem; /* 24px */
+
+  /* line heights */
+  --lh-15: 15px;
+  --lh-19: 19px;
+  --lh-23: 23px;
+  --lh-30: 30px;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-size: 16px;
+  font-family: var(--ff-body);
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility Classes */
+
+.heading-xl {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-500);
+  line-height: var(--lh-30);
+}
+.heading-l {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-400);
+  line-height: var(--lh-23);
+}
+.heading-m {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-300);
+  line-height: var(--lh-19);
+}
+.heading-s {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-100);
+  line-height: var(--lh-15);
+  /* kerning */
+}
+.body-m {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-200);
+  line-height: var(--lh-23);
+}
+.body-b {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-100);
+  line-height: var(--lh-15);
+}
