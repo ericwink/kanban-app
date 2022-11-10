@@ -142,3 +142,144 @@ select {
   font-size: var(--fs-100);
   line-height: var(--lh-15);
 }
+
+/* custom checkboxes */
+input[type="checkbox"] {
+  appearance: none;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 2px;
+  background-color: var(--clr-neutral-100);
+  border: 1px solid var(--clr-neutral-400);
+}
+
+input[type="checkbox"]:checked {
+  background: url("./assets/icon-check.svg");
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: center;
+  background-color: var(--clr-primary-400);
+}
+
+/* custom drop-down chevron */
+select {
+  appearance: none;
+  background-image: url("./assets/icon-chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 5% top 50%;
+  background-size: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--clr-neutral-400);
+}
+
+/* basic and mobile styling */
+
+.App {
+  background-color: var(--clr-neutral-200);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.App.dark {
+  background-color: var(--clr-neutral-700);
+}
+
+#task-preview-card {
+  height: 88px;
+  width: 280px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 23px 16px;
+  box-shadow: 2px 5px 5px var(--clr-neutral-300);
+  background-color: var(--clr-neutral-100);
+}
+
+#task-preview-card h2 {
+  color: var(--clr-neutral-400);
+}
+
+#task-preview-card.dark {
+  background-color: var(--clr-neutral-600);
+  box-shadow: 2px 5px 5px var(--clr-neutral-500);
+}
+
+#task-preview-card.dark h1 {
+  color: var(--clr-neutral-100);
+}
+
+#task-preview-card:hover,
+#task-preview-card.dark:hover h1 {
+  cursor: pointer;
+  color: var(--clr-primary-400);
+}
+
+#task-view-card {
+  min-height: 557px;
+  width: 343px;
+  border-radius: 6px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: var(--clr-neutral-100);
+}
+#task-view-card.dark,
+#task-view-card.dark h3,
+#task-view-card.dark select {
+  background-color: var(--clr-neutral-600);
+  color: var(--clr-neutral-100);
+}
+#task-view-card h2 {
+  color: var(--clr-neutral-400);
+}
+
+#task-view-card .task-header {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+#task-view-card img {
+  height: 20px;
+}
+
+#task-view-card .subtask {
+  border-radius: 4px;
+  background-color: var(--clr-neutral-200);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+}
+#task-view-card.dark .subtask {
+  background-color: var(--clr-neutral-700);
+}
+#task-view-card input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: var(--clr-neutral-400);
+}
+
+#task-view-card h3 {
+  color: var(--clr-neutral-400);
+  margin-bottom: 10px;
+}
+
+#task-view-card select {
+  width: 100%;
+  height: 40px;
+  padding: 8px 14px;
+}
+
+/* tablet styling */
+@media (min-width: 760px) {
+  #task-view-card {
+    width: 480px;
+    padding: 24px;
+    gap: 2em;
+  }
+}
+
+/* desktop styling */
