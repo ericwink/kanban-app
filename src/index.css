@@ -3,6 +3,8 @@
 :root {
   /* css variables */
   /* primary colors */
+  --clr-primary-100: #efeff9;
+  --clr-primary-200: #d8d7f1;
   --clr-primary-300: #a8a4ff;
   --clr-primary-400: #635fc7;
   /* secondary colors */
@@ -12,6 +14,7 @@
   --clr-neutral-100: #fff;
   --clr-neutral-200: #f4f7fd;
   --clr-neutral-300: #e4ebfa;
+  --clr-neutral-350: #bfbfc4;
   --clr-neutral-400: #828fa3;
   --clr-neutral-500: #3e3f4e;
   --clr-neutral-600: #2b2c37;
@@ -111,6 +114,7 @@ select {
 
 /* Utility Classes */
 
+/* font styles */
 .heading-xl {
   font-weight: var(--fw-bold);
   font-size: var(--fs-500);
@@ -143,6 +147,58 @@ select {
   line-height: var(--lh-15);
 }
 
+/* buttons */
+button:hover {
+  cursor: pointer;
+}
+
+.btn-s {
+  min-width: 255px;
+  min-height: 40px;
+  border: none;
+  border-radius: 24px;
+  font-size: var(--fs-100);
+  font-weight: var(--fw-bold);
+}
+
+.btn-l {
+  min-width: 255px;
+  min-height: 48px;
+  border: none;
+  border-radius: 24px;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+}
+
+.btn-primary {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-primary-400);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-primary-300);
+}
+
+.btn-secondary {
+  background-color: var(--clr-primary-100);
+  color: var(--clr-primary-400);
+}
+.btn-secondary:hover {
+  background-color: var(--clr-primary-200);
+}
+
+.btn-secondary:hover {
+  background-color: var(--clr-primary-200);
+}
+
+.btn-destructive {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-secondary-400);
+}
+.btn-destructive:hover {
+  background-color: var(--clr-secondary-300);
+}
+
 /* custom checkboxes */
 input[type="checkbox"] {
   appearance: none;
@@ -161,7 +217,7 @@ input[type="checkbox"]:checked {
   background-color: var(--clr-primary-400);
 }
 
-/* custom drop-down chevron */
+/* custom drop-down with chevron */
 select {
   appearance: none;
   background-image: url("./assets/icon-chevron-down.svg");
@@ -169,7 +225,30 @@ select {
   background-position: right 5% top 50%;
   background-size: 10px;
   border-radius: 5px;
+}
+
+/* border and font size on input, textarea, select */
+input,
+textarea,
+select {
   border: 1px solid var(--clr-neutral-400);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
+}
+
+textarea {
+  padding: 8px 14px;
+}
+
+select {
+  width: 100%;
+  height: 40px;
+  padding: 8px 14px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--clr-neutral-350);
 }
 
 /* basic and mobile styling */
@@ -254,31 +333,127 @@ select {
   gap: 16px;
   padding: 12px;
 }
+#task-view-card .subtask:hover {
+  background-color: var(--clr-primary-200);
+}
 #task-view-card.dark .subtask {
   background-color: var(--clr-neutral-700);
+}
+#task-view-card.dark .subtask:hover {
+  background-color: var(--clr-neutral-500);
 }
 #task-view-card input[type="checkbox"]:checked + label {
   text-decoration: line-through;
   color: var(--clr-neutral-400);
 }
 
-#task-view-card h3 {
+#status-select h3 {
   color: var(--clr-neutral-400);
   margin-bottom: 10px;
 }
 
-#task-view-card select {
-  width: 100%;
+#task-modal,
+#board-modal {
+  min-width: 343px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+  background-color: var(--clr-neutral-100);
+}
+#task-modal label,
+#board-modal label {
+  color: var(--clr-neutral-400);
+  font-size: var(--fs-100);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-15);
+}
+#task-modal .container,
+#board-modal .container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#task-modal input,
+#board-modal input {
   height: 40px;
   padding: 8px 14px;
 }
 
+#task-modal.dark,
+#task-modal.dark input,
+#task-modal.dark textarea,
+#task-modal.dark select,
+#board-modal.dark,
+#board-modal.dark input,
+#board-modal.dark textarea,
+#board-modal.dark select {
+  background-color: var(--clr-neutral-600);
+}
+
+#task-modal.dark h1,
+#task-modal.dark label,
+#task-modal.dark input,
+#task-modal.dark textarea,
+#task-modal.dark select,
+#board-modal.dark h1,
+#board-modal.dark label,
+#board-modal.dark input,
+#board-modal.dark textarea,
+#board-modal.dark select {
+  color: var(--clr-neutral-100);
+}
+#task-modal.dark input::placeholder,
+#task-modal.dark textarea::placeholder,
+#board-modal.dark input::placeholder,
+#board-modal.dark textarea::placeholder {
+  color: #606169;
+}
+
+#delete-modal {
+  width: 343px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+  background-color: var(--clr-neutral-100);
+}
+
+#delete-modal h1 {
+  color: var(--clr-secondary-400);
+}
+#delete-modal p {
+  color: var(--clr-neutral-400);
+}
+
+#delete-modal.dark {
+  background-color: var(--clr-neutral-600);
+}
+
 /* tablet styling */
 @media (min-width: 760px) {
-  #task-view-card {
+  #task-view-card,
+  #task-modal,
+  #board-modal,
+  #delete-modal {
     width: 480px;
     padding: 24px;
     gap: 2em;
+  }
+
+  #delete-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #delete-modal h1,
+  #delete-modal p {
+    grid-column: 1/3;
+  }
+  #delete-modal button {
+    min-width: 200px;
   }
 }
 
