@@ -1,15 +1,34 @@
-import { ThemeContext } from "../context/ThemeContext"
-import { useContext } from "react"
+import { ThemeContext } from "../context/ThemeContext";
+import { useContext, useState } from "react";
+import { Tasks, Subtask } from "../utilities/interface";
+import TaskViewCard from "./TaskViewCard";
 
-export default function TaskPreviewCard() {
-const theme = useContext(ThemeContext)
+type Props = {
+  task: Tasks;
+};
 
-    return (
-        <div id='task-preview-card' className={theme}>
-            <h1 className='heading-m'>Design settings and search pages</h1>
-            <h2 className='heading-s'>1 of 3 subtasks</h2>
-        </div>
-    )
+export default function TaskPreviewCard({ task }: Props) {
+  const theme = useContext(ThemeContext);
+  const [detailsVisible, setDetailsVisible] = useState(false);
+
+  const count = task.subtasks.length;
+
+  //iterate through subtasks and return a count of total completed
+  let completed = (subtask: Subtask[]) => {
+    let count = 0;
+    for (let each of subtask) {
+      if (each.isCompleted === true) count++;
+    }
+    return count;
+  };
+
+  return (
+    <>
+      <div id="task-preview-card" className={theme} onClick={() => setDetailsVisible(!detailsVisible)}>
+        <h1 className="heading-m">{task.title}</h1>
+        <h2 className="heading-s">{`${completed(task.subtasks)} of ${count} subtasks`}</h2>
+      </div>
+      {detailsVisible ? <TaskViewCard task={task} completed={completed(task.subtasks)} count={count} /> : null}
+    </>
+  );
 }
-
-//props title task count
