@@ -22,11 +22,9 @@ function App() {
     <div className={`App ${theme}`}>
       <ThemeContext.Provider value={theme}>
         Main App Page
-        {/* <TaskPreviewCard />
-        <TaskViewCard />
-        <AddTask />
-        <AddBoard />
-        <DeleteModal /> */}
+        {/* <AddTask /> */}
+        {/* <AddBoard /> */}
+        {/* <DeleteModal /> */}
         {data.boards.map(board => {
           return <Boardview board={board} key={board.name} />;
         })}

@@ -199,6 +199,14 @@ button:hover {
   background-color: var(--clr-secondary-300);
 }
 
+/* modal class to center any modal elements on screen */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* custom checkboxes */
 input[type="checkbox"] {
   appearance: none;
@@ -262,6 +270,14 @@ textarea::placeholder {
 }
 .App.dark {
   background-color: var(--clr-neutral-700);
+}
+
+#modal-background {
+  /* ensure entire viewport is covered with position fixed! */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #task-preview-card {

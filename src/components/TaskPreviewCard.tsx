@@ -9,7 +9,7 @@ type Props = {
 
 export default function TaskPreviewCard({ task }: Props) {
   const theme = useContext(ThemeContext);
-  const [detailsVisible, setDetailsVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const count = task.subtasks.length;
 
@@ -17,18 +17,18 @@ export default function TaskPreviewCard({ task }: Props) {
   let completed = (subtask: Subtask[]) => {
     let count = 0;
     for (let each of subtask) {
-      if (each.isCompleted === true) count++;
+      if (each.isCompleted) count++;
     }
     return count;
   };
 
   return (
     <>
-      <div id="task-preview-card" className={theme} onClick={() => setDetailsVisible(!detailsVisible)}>
+      <div id="task-preview-card" className={theme} onClick={() => setVisible(!visible)}>
         <h1 className="heading-m">{task.title}</h1>
         <h2 className="heading-s">{`${completed(task.subtasks)} of ${count} subtasks`}</h2>
       </div>
-      {detailsVisible ? <TaskViewCard task={task} completed={completed(task.subtasks)} count={count} /> : null}
+      {visible ? <TaskViewCard task={task} completed={completed(task.subtasks)} count={count} visible={visible} setVisible={setVisible} /> : null}
     </>
   );
 }
