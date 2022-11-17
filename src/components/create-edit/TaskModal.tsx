@@ -1,6 +1,6 @@
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 import { useContext } from "react";
-import StatusSelect from "./StatusSelect";
+import StatusSelect from "../views/StatusSelect";
 
 export default function TaskModal() {
   const theme = useContext(ThemeContext);
@@ -23,6 +23,7 @@ export default function TaskModal() {
       </div>
       <button className="btn-s btn-secondary">+ Add New Subtask</button>
       <StatusSelect />
+      {/* need to pass in colNames prop */}
       <button className="btn-s btn-primary">Create Task</button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Subtask } from "../utilities/interface";
+import { Subtask } from "../../utilities/interface";
 
 type Props = {
   subtask: Subtask;

@@ -1,8 +1,8 @@
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 import { Dispatch, useContext } from "react";
-import menu from "../assets/icon-vertical-ellipsis.svg";
+import menu from "../../assets/icon-vertical-ellipsis.svg";
 import StatusSelect from "./StatusSelect";
-import { Tasks } from "../utilities/interface";
+import { Tasks } from "../../utilities/interface";
 import SubtaskItem from "./SubtaskItem";
 
 type Props = {
@@ -11,9 +11,10 @@ type Props = {
   count: number;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  colNames: string[];
 };
 
-export default function TaskViewCard({ task, completed, count, visible, setVisible }: Props) {
+export default function TaskViewCard({ task, completed, count, visible, setVisible, colNames }: Props) {
   const theme = useContext(ThemeContext);
 
   return (
@@ -31,7 +32,7 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
             return <SubtaskItem subtask={subtask} />;
           })}
         </div>
-        <StatusSelect />
+        <StatusSelect task={task} colNames={colNames} />
       </div>
     </>
   );

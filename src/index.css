@@ -263,10 +263,8 @@ textarea::placeholder {
 
 .App {
   background-color: var(--clr-neutral-200);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  min-height: 100vh;
+  min-width: fit-content;
 }
 .App.dark {
   background-color: var(--clr-neutral-700);
@@ -278,10 +276,12 @@ textarea::placeholder {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
 }
 
 #task-preview-card {
-  height: 88px;
+  min-height: 88px;
   width: 280px;
   border-radius: 10px;
   display: flex;
@@ -449,6 +449,34 @@ textarea::placeholder {
   background-color: var(--clr-neutral-600);
 }
 
+#column-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 280px;
+}
+
+#column-view .column-title {
+  transform: translateX(12px);
+}
+
+#column-view .column-title::before {
+  content: " ";
+  display: inline-block;
+  position: relative;
+  left: -12px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: #49c4e5;
+}
+
+#board-view {
+  display: flex;
+  gap: 24px;
+  padding: 16px 16px;
+}
+
 /* tablet styling */
 @media (min-width: 760px) {
   #task-view-card,
@@ -470,6 +498,12 @@ textarea::placeholder {
   }
   #delete-modal button {
     min-width: 200px;
+  }
+
+  #board-view {
+    display: flex;
+    gap: 24px;
+    padding: 16px 24px;
   }
 }
 

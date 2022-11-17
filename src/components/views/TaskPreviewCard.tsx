@@ -1,13 +1,14 @@
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 import { useContext, useState } from "react";
-import { Tasks, Subtask } from "../utilities/interface";
+import { Tasks, Subtask } from "../../utilities/interface";
 import TaskViewCard from "./TaskViewCard";
 
 type Props = {
   task: Tasks;
+  colNames: string[];
 };
 
-export default function TaskPreviewCard({ task }: Props) {
+export default function TaskPreviewCard({ task, colNames }: Props) {
   const theme = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
 
@@ -28,7 +29,7 @@ export default function TaskPreviewCard({ task }: Props) {
         <h1 className="heading-m">{task.title}</h1>
         <h2 className="heading-s">{`${completed(task.subtasks)} of ${count} subtasks`}</h2>
       </div>
-      {visible ? <TaskViewCard task={task} completed={completed(task.subtasks)} count={count} visible={visible} setVisible={setVisible} /> : null}
+      {visible ? <TaskViewCard task={task} completed={completed(task.subtasks)} count={count} visible={visible} setVisible={setVisible} colNames={colNames} /> : null}
     </>
   );
 }
