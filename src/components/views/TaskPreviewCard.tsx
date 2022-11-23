@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function TaskPreviewCard({ task, colNames }: Props) {
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
 
   const count = task.subtasks.length;
@@ -25,7 +25,7 @@ export default function TaskPreviewCard({ task, colNames }: Props) {
 
   return (
     <>
-      <div id="task-preview-card" className={theme} onClick={() => setVisible(!visible)}>
+      <div id="task-preview-card" className={themeContext?.theme} onClick={() => setVisible(!visible)}>
         <h1 className="heading-m">{task.title}</h1>
         <h2 className="heading-s">{`${completed(task.subtasks)} of ${count} subtasks`}</h2>
       </div>

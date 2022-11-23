@@ -1,3 +1,20 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-export const ThemeContext = createContext('light')
+type Props = {
+  children: React.ReactNode;
+};
+
+type Context = {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const ThemeContext = createContext<Context | null>(null);
+
+const GlobalTheme = ({ children }: Props) => {
+  const [theme, setTheme] = useState("light");
+
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+};
+
+export default GlobalTheme;

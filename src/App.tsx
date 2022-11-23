@@ -1,31 +1,26 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import data from "./data.json";
 import { ThemeContext } from "./context/ThemeContext";
 import Boardview from "./components/views/Boardview";
+import Sidebar from "./components/navbars/Sidebar";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const themeContext = useContext(ThemeContext);
   const [visible, setVisible] = useState("");
+  const [boardNames, setBoardNames] = useState([""]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  useEffect(() => {
+    const boardArray = data.boards.map(board => board.name);
+    setBoardNames([...boardArray]);
+  });
 
   return (
-    <div className={`App ${theme}`}>
-      <ThemeContext.Provider value={theme}>
-        <button className="btn-s btn-secondary" onClick={toggleTheme}>
-          Change Theme
-        </button>{" "}
-        {data.boards.map(board => {
-          return (
-            <>
-              <h1 onClick={() => setVisible(board.name)}>{board.name}</h1>
-              {visible === board.name ? <Boardview board={board} key={board.name} /> : null}
-            </>
-          );
-        })}
-      </ThemeContext.Provider>
+    <div className={`App ${themeContext?.theme}`}>
+      <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} />
+
+      {data.boards.map(board => {
+        return <>{visible === board.name ? <Boardview board={board} key={board.name} /> : null}</>;
+      })}
     </div>
   );
 }

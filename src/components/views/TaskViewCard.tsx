@@ -1,5 +1,5 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { Dispatch, useContext } from "react";
+import { useContext } from "react";
 import menu from "../../assets/icon-vertical-ellipsis.svg";
 import StatusSelect from "./StatusSelect";
 import { Tasks } from "../../utilities/interface";
@@ -15,12 +15,12 @@ type Props = {
 };
 
 export default function TaskViewCard({ task, completed, count, visible, setVisible, colNames }: Props) {
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
   return (
     <>
       <div id="modal-background" onClick={() => setVisible(!visible)}></div>
-      <div id="task-view-card" className={`modal ${theme}`}>
+      <div id="task-view-card" className={`modal ${themeContext?.theme}`}>
         <div className="task-header">
           <h1 className="heading-l">{task.title}</h1>
           <img src={menu} alt="menu" />
@@ -37,6 +37,3 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
     </>
   );
 }
-
-//mobile w343 h557
-//tablet w480 h523
