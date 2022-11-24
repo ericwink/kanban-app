@@ -1,25 +1,47 @@
 export type Subtask = {
-  title: string;
-  isCompleted: boolean;
+  title?: string;
+  isCompleted?: boolean;
 };
 
 export type Tasks = {
-  title: string;
-  description: string;
-  status: string;
-  subtasks: Subtask[];
+  title?: string;
+  description?: string;
+  status?: string;
+  subtasks?: Subtask[];
 };
 
 export type Columns = {
-  name: string;
-  tasks: Tasks[];
+  name?: string;
+  tasks?: Tasks[];
 };
 
 export type Board = {
-  name: string;
-  columns: Columns[];
+  name?: string;
+  columns?: Columns[];
 };
 
 export type Boards = {
-  boards: Board[];
+  boards?: Board[];
+};
+
+// export type BoardData = {
+//   boards?: [{ name?: string; columns?: [{ name?: string; tasks?: [{ title?: string; descripton?: string; status?: string; subtasks?: [{ title?: string; isCompleted?: boolean }] }] }] }];
+// };
+
+export type BoardData = {
+  boards: {
+    name: string;
+    columns: {
+      name: string;
+      tasks: {
+        title: string;
+        description: string;
+        status: string;
+        subtasks: {
+          title: string;
+          isCompleted: boolean;
+        }[];
+      }[];
+    }[];
+  }[];
 };

@@ -9,8 +9,10 @@ export default function ThemeToggle() {
   };
 
   return (
-    <div className="theme-toggle">
-      <button onClick={handleClick}>switch</button>
+    <div id="theme-toggle" className={themeContext?.theme}>
+      <button onClick={handleClick} className={themeContext?.theme}>
+        <div className={`inner-switch ${themeContext?.theme}`}></div>
+      </button>
     </div>
   );
 }

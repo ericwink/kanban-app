@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const boardArray = data.boards.map(board => board.name);
     setBoardNames([...boardArray]);
-  });
+  }, []);
 
   return (
     <div className={`App ${themeContext?.theme}`}>

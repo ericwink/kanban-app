@@ -20,14 +20,7 @@ export default function BoardList({ boardNames, visible, setVisible }: Props) {
           </button>
         );
       })}
-      <button
-        className="new-board"
-        onClick={() => {
-          console.log(boardNames?.boardNames);
-        }}
-      >
-        + Create New Board
-      </button>
+      <button className="new-board">+ Create New Board</button>
     </div>
   );
 }

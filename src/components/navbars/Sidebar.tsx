@@ -15,7 +15,7 @@ export default function Sidebar({ boardNames, visible, setVisible }: Props) {
   const themeContext = useContext(ThemeContext);
 
   return (
-    <div id="sidebar">
+    <div id="sidebar" className={themeContext?.theme}>
       <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
       <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} />
       <ThemeToggle />
