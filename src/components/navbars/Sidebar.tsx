@@ -1,6 +1,6 @@
 import logodark from "../../assets/logo-dark.svg";
 import logolight from "../../assets/logo-light.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import BoardList from "./BoardList";
 import ThemeToggle from "./ThemeToggle";
@@ -13,14 +13,24 @@ type Props = {
 
 export default function Sidebar({ boardNames, visible, setVisible }: Props) {
   const themeContext = useContext(ThemeContext);
+  const [sidebar, setSidebar] = useState("show");
+
+  let sidebarToggle = () => {
+    setSidebar(sidebar === "show" ? "hide" : "show");
+  };
 
   return (
-    <div id="sidebar" className={themeContext?.theme}>
-      <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
-      <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} />
-      <ThemeToggle />
-      <button>Hide Sidebar</button>
-    </div>
+    <>
+      <div id="sidebar" className={`${themeContext?.theme} ${sidebar}`}>
+        <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
+        <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} />
+        <ThemeToggle />
+        <button onClick={sidebarToggle}>Hide Sidebar</button>
+      </div>
+      <button className="show-sidebar" onClick={sidebarToggle}>
+        SHOW SIDEBAR
+      </button>
+    </>
 
     //board listing
     //click each to reveal

@@ -482,22 +482,6 @@ textarea::placeholder {
   padding: 16px 16px;
 }
 
-#sidebar {
-  display: none;
-  background-color: var(--clr-neutral-100);
-}
-
-#sidebar.dark {
-  background-color: var(--clr-neutral-600);
-}
-
-#sidebar img {
-  height: 25px;
-  width: 152px;
-  margin-top: 35px;
-  margin-left: 26px;
-}
-
 #theme-toggle {
   width: 235px;
   height: 48px;
@@ -537,9 +521,13 @@ textarea::placeholder {
   padding: 3px;
 }
 
-#theme-toggle button.dark {
-  display: flex;
-  justify-content: right;
+/* slide toggle switch */
+#theme-toggle button .inner-switch.dark {
+  transform: translateX(140%);
+  transition: 0.5s;
+}
+#theme-toggle button .inner-switch {
+  transition: 0.5s;
 }
 
 #theme-toggle img {
@@ -552,6 +540,10 @@ textarea::placeholder {
   width: 14px;
   border-radius: 50%;
   background-color: var(--clr-neutral-100);
+}
+
+#sidebar {
+  display: none;
 }
 
 /* tablet styling */
@@ -582,57 +574,103 @@ textarea::placeholder {
     gap: 24px;
     padding: 16px 24px;
   }
-}
 
-#sidebar {
-  display: block;
-  min-height: 100vh;
-  min-width: 261px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  #sidebar {
+    display: block;
+    min-height: 100vh;
+    min-width: 261px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--clr-neutral-100);
+    overflow: hidden;
+    z-index: 1;
+    animation: slideIn 2s forwards;
+  }
 
-#sidebar .sidebar-boardlist {
-  display: flex;
-  flex-direction: column;
-  margin-top: 54px;
-}
+  #sidebar.dark {
+    background-color: var(--clr-neutral-600);
+  }
 
-#sidebar .sidebar-boardlist h1 {
-  padding-left: 28px;
-  margin-bottom: 19px;
-  color: var(--clr-neutral-400);
-}
+  #sidebar .sidebar-boardlist {
+    display: flex;
+    flex-direction: column;
+    margin-top: 54px;
+  }
 
-#sidebar .sidebar-boardlist button {
-  padding: 14px 52px;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  color: var(--clr-neutral-400);
-  background: none;
-  border: none;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+  #sidebar .sidebar-boardlist h1 {
+    padding-left: 28px;
+    margin-bottom: 19px;
+    color: var(--clr-neutral-400);
+  }
 
-#sidebar .sidebar-boardlist button.active {
-  background-color: var(--clr-primary-400);
-  color: var(--clr-neutral-100);
-}
+  #sidebar .sidebar-boardlist button {
+    padding: 14px 52px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color: var(--clr-neutral-400);
+    background: none;
+    border: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 
-#sidebar .sidebar-boardlist button:before {
-  content: " ";
-  position: absolute;
-  transform: translateX(-25px);
-  background-image: url("/src/assets/icon-board.svg");
-  height: 16px;
-  width: 16px;
-}
+  #sidebar .sidebar-boardlist button.active {
+    background-color: var(--clr-primary-400);
+    color: var(--clr-neutral-100);
+  }
 
-#sidebar .sidebar-boardlist .new-board {
-  filter: invert(44%) sepia(75%) saturate(459%) hue-rotate(203deg) brightness(79%) contrast(99%);
+  #sidebar .sidebar-boardlist button:before {
+    content: " ";
+    position: absolute;
+    transform: translateX(-25px);
+    background-image: url("/src/assets/icon-board.svg");
+    height: 16px;
+    width: 16px;
+  }
+
+  #sidebar .sidebar-boardlist .new-board {
+    filter: invert(44%) sepia(75%) saturate(459%) hue-rotate(203deg) brightness(79%) contrast(99%);
+  }
+
+  #sidebar img {
+    height: 25px;
+    width: 152px;
+    margin-top: 35px;
+    margin-left: 26px;
+  }
+  #sidebar.hide {
+    animation: slideOut 2s forwards;
+  }
+
+  @keyframes slideOut {
+    0% {
+      transform: translateX(0%);
+      margin-right: 0px;
+    }
+    100% {
+      transform: translateX(-100%);
+      margin-right: -261px;
+    }
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+      margin-right: -261px;
+    }
+    100% {
+      transform: translateX(0%);
+      margin-right: 0px;
+    }
+  }
+
+  .show-sidebar {
+    position: fixed;
+    left: 0;
+    top: 90%;
+    z-index: 0;
+  }
 }
 
 /* desktop styling */
