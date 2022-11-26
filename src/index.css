@@ -533,15 +533,13 @@ textarea::placeholder {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: var(--clr-neutral-100);
     overflow: hidden;
     z-index: 3;
-    transition: 0.5s;
+    background-color: var(--clr-neutral-100);
   }
 
   #sidebar.dark {
     background-color: var(--clr-neutral-600);
-    transition: 0.5s;
   }
 
   #sidebar .sidebar-boardlist {
@@ -637,6 +635,20 @@ textarea::placeholder {
     left: 0;
     bottom: 8%;
     z-index: 2;
+    width: 56px;
+    height: 48px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: none;
+    background-color: var(--clr-primary-400);
+    background-image: url("../src/assets/icon-show-sidebar.svg");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+  }
+
+  .show-sidebar:hover {
+    background-color: var(--clr-primary-300);
   }
 
   #theme-toggle {

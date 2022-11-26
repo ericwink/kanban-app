@@ -35,9 +35,7 @@ export default function Sidebar({ boardNames, visible, setVisible }: Props) {
           Hide Sidebar
         </button>
       </div>
-      <button className="show-sidebar" onClick={showSidebar}>
-        SHOW SIDEBAR
-      </button>
+      <button className="show-sidebar" onClick={showSidebar}></button>
     </>
 
     //board listing
