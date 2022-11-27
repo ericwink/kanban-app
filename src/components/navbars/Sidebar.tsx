@@ -19,10 +19,12 @@ export default function Sidebar({ boardNames, visible, setVisible }: Props) {
   let hideSidebar = () => {
     gsap.to("#sidebar", { x: "-261px" });
     gsap.to("#board-view", { x: "-261px" });
+    gsap.to("#navbar", { x: "-261px" });
   };
   let showSidebar = () => {
     gsap.to("#sidebar", { x: "0px" });
     gsap.to("#board-view", { x: "0px" });
+    gsap.to("#navbar", { x: "0px" });
   };
 
   return (
