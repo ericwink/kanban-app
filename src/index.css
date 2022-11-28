@@ -268,7 +268,6 @@ textarea::placeholder {
   min-width: fit-content;
   display: flex;
   transition: 0.5s;
-  position: relative;
 }
 .App.dark {
   background-color: var(--clr-neutral-700);
@@ -687,7 +686,7 @@ textarea::placeholder {
   background-color: var(--clr-neutral-100);
 }
 
-/******** tablet styling **********/
+/********************  tablet styling **********************/
 @media (min-width: 760px) {
   #task-view-card,
   #task-modal,
@@ -720,10 +719,21 @@ textarea::placeholder {
     pointer-events: none;
   }
 
+  #navbar[data-sidebar="hidden"],
+  #board-view[data-sidebar="hidden"] {
+    margin-left: 0px;
+    transition: 0.8s;
+  }
+  #navbar[data-sidebar="show"],
+  #board-view[data-sidebar="show"] {
+    margin-left: 261px;
+    transition: 0.8s;
+  }
+
   #sidebar {
     display: block;
     box-sizing: border-box;
-    position: relative;
+    position: fixed;
     min-height: 100vh;
     min-width: 261px;
     display: flex;
@@ -736,15 +746,15 @@ textarea::placeholder {
     transform-origin: left;
   }
 
-  #sidebar[data-hidden="hidden"] {
+  #sidebar[data-sidebar="hidden"] {
     min-width: 0px;
     width: 0px;
-    transition: 1s;
+    transition: 0.8s;
   }
-  #sidebar[data-hidden="show"] {
+  #sidebar[data-sidebar="show"] {
     min-width: 261px;
     width: 261px;
-    transition: 1s;
+    transition: 0.8s;
   }
 
   .show-sidebar {

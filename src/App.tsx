@@ -9,6 +9,7 @@ function App() {
   const themeContext = useContext(ThemeContext);
   const [visible, setVisible] = useState("");
   const [boardNames, setBoardNames] = useState([""]);
+  const [sidebar, setSidebar] = useState(true);
 
   useEffect(() => {
     const boardArray = data.boards.map(board => board.name);
@@ -17,10 +18,10 @@ function App() {
 
   return (
     <div className={`App ${themeContext?.theme}`}>
-      <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} />
-      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} />
+      <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} sidebar={sidebar} setSidebar={setSidebar} />
+      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} />
       {data.boards.map(board => {
-        return <>{visible === board.name ? <Boardview board={board} key={board.name} /> : null}</>;
+        return <>{visible === board.name ? <Boardview board={board} key={board.name} sidebar={sidebar} /> : null}</>;
       })}
     </div>
   );

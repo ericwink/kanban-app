@@ -9,14 +9,15 @@ type Props = {
   visible: string;
   boardNames: string[];
   setVisible: React.Dispatch<React.SetStateAction<string>>;
+  sidebar: boolean;
 };
 
-export default function Navbar({ visible, boardNames, setVisible }: Props) {
+export default function Navbar({ visible, boardNames, setVisible, sidebar }: Props) {
   const [menu, showMenu] = useState(false);
   const themeContext = useContext(ThemeContext);
 
   return (
-    <div id="navbar" className={themeContext?.theme}>
+    <div id="navbar" data-sidebar={sidebar ? "show" : "hidden"} className={themeContext?.theme}>
       <img src={smallLogo} alt="Kanban Logo" className="mobile-logo" />
       <button
         className="heading-l menu"
@@ -43,11 +44,3 @@ export default function Navbar({ visible, boardNames, setVisible }: Props) {
     </div>
   );
 }
-
-//zindex
-//.modal 999
-//modal-background 99
-//navbar 2
-//navbar floating menu 999
-//sidebar 3
-//.showsidebar 2
