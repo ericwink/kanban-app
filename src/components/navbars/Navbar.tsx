@@ -37,9 +37,17 @@ export default function Navbar({ visible, boardNames, setVisible }: Props) {
             <BoardList boardNames={boardNames} visible={visible} setVisible={setVisible} />
             <ThemeToggle />
           </div>
-          <div id="modal-background" onClick={() => showMenu(!menu)}></div>
+          <div id="modal-background" className="navbar" onClick={() => showMenu(!menu)}></div>
         </>
       )}
     </div>
   );
 }
+
+//zindex
+//.modal 999
+//modal-background 99
+//navbar 2
+//navbar floating menu 999
+//sidebar 3
+//.showsidebar 2

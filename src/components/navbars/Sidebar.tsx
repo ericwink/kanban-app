@@ -1,6 +1,6 @@
 import logodark from "../../assets/logo-dark.svg";
 import logolight from "../../assets/logo-light.svg";
-import { useContext, useRef } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import BoardList from "./BoardList";
 import ThemeToggle from "./ThemeToggle";
@@ -14,30 +14,19 @@ type Props = {
 
 export default function Sidebar({ boardNames, visible, setVisible }: Props) {
   const themeContext = useContext(ThemeContext);
-  const ref = useRef(null);
-
-  let hideSidebar = () => {
-    gsap.to("#sidebar", { x: "-261px" });
-    gsap.to("#board-view", { x: "-261px" });
-    gsap.to("#navbar", { x: "-261px" });
-  };
-  let showSidebar = () => {
-    gsap.to("#sidebar", { x: "0px" });
-    gsap.to("#board-view", { x: "0px" });
-    gsap.to("#navbar", { x: "0px" });
-  };
+  const [sidebar, setSidebar] = useState(false);
 
   return (
     <>
-      <div id="sidebar" className={themeContext?.theme} ref={ref}>
+      <div id="sidebar" data-hidden={!sidebar ? "hidden" : "show"} className={themeContext?.theme}>
         <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
         <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} />
         <ThemeToggle />
-        <button onClick={hideSidebar} className="hide-sidebar">
+        <button onClick={() => setSidebar(false)} className="hide-sidebar">
           Hide Sidebar
         </button>
       </div>
-      <button className="show-sidebar" onClick={showSidebar}></button>
+      <button className="show-sidebar" onClick={() => setSidebar(true)}></button>
     </>
 
     //board listing
