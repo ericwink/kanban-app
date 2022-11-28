@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import BoardList from "./BoardList";
 import ThemeToggle from "./ThemeToggle";
-import gsap from "gsap";
 
 type Props = {
   boardNames: string[];
