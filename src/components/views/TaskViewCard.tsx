@@ -2,8 +2,9 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { useContext } from "react";
 import menu from "../../assets/icon-vertical-ellipsis.svg";
 import StatusSelect from "./StatusSelect";
-import { Tasks } from "../../utilities/interface";
+import { Tasks, BoardData } from "../../utilities/interface";
 import SubtaskItem from "./SubtaskItem";
+import { updateTaskStatus } from "../../utilities/immerFunctions";
 
 type Props = {
   task: Tasks;
@@ -12,10 +13,21 @@ type Props = {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   colNames: string[];
+  taskIndex: number;
+  boardIndex: number;
+  columnIndex: number;
+  setBoardData: React.Dispatch<React.SetStateAction<BoardData>>;
+  boardData: BoardData;
 };
 
-export default function TaskViewCard({ task, completed, count, visible, setVisible, colNames }: Props) {
+export default function TaskViewCard({ task, completed, count, visible, setVisible, colNames, taskIndex, boardIndex, columnIndex, setBoardData, boardData }: Props) {
   const themeContext = useContext(ThemeContext);
+
+  let changeTaskStatus = () => {
+    console.log("click");
+    let result = updateTaskStatus(boardData, boardIndex, columnIndex, taskIndex, "Doing");
+    setBoardData(result);
+  };
 
   return (
     <>
@@ -23,12 +35,18 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
       <div id="task-view-card" className={`modal ${themeContext?.theme}`}>
         <div className="task-header">
           <h1 className="heading-l">{task.title}</h1>
-          <img src={menu} alt="menu" />
+          <button
+            onClick={() => {
+              changeTaskStatus();
+            }}
+          >
+            <img src={menu} alt="menu" />
+          </button>
         </div>
         <h2 className="body-m">{task.description}</h2>
         <div className="subtasks-container">
           <h3 className="heading-s">{`Subtasks (${completed} of ${count})`}</h3>
-          {task.subtasks.map(subtask => {
+          {task.subtasks?.map(subtask => {
             return <SubtaskItem subtask={subtask} />;
           })}
         </div>

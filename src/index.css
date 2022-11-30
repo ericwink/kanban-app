@@ -719,6 +719,11 @@ textarea::placeholder {
     pointer-events: none;
   }
 
+  #navbar .floating-menu,
+  #navbar #modal-background.navbar {
+    display: none;
+  }
+
   #navbar[data-sidebar="hidden"],
   #board-view[data-sidebar="hidden"] {
     margin-left: 0px;
@@ -791,7 +796,7 @@ textarea::placeholder {
     align-items: center;
   }
   #sidebar .sidebar-boardlist button {
-    width: 100%;
+    min-width: 100%;
   }
 
   #sidebar .sidebar-boardlist button:hover {
