@@ -13,18 +13,16 @@ export let updateSubtask = () => {
 //change task to other column
 
 export let updateTaskStatus = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, newStatus: string) => {
-  //code
-  //remove the task
-  const toMove = boardData.boards[boardIndex].columns[columnIndex].tasks.splice(taskIndex, 1);
-  //update task status
-  toMove[0].status = newStatus;
-  //find the column to move it to based on newStatus
-  const columnsArray = boardData.boards[boardIndex].columns;
-  const newColumnIndex = columnsArray.findIndex(column => column.name === newStatus);
-  console.log(newColumnIndex);
-  //push onto newStatus array
-  const updatedBoard = produce(boardData, draft => {
-    draft.boards[boardIndex].columns[newColumnIndex].tasks.push(toMove[0]);
+  let updatedBoard = produce(boardData, draft => {
+    //splice out the task to update
+    let taskToUpdate = draft.boards[boardIndex].columns[columnIndex].tasks.splice(taskIndex, 1);
+    //update the status of the task
+    taskToUpdate[0].status = newStatus;
+    //find the column to move it into based on newStatus
+    let columnsArray = draft.boards[boardIndex].columns;
+    let newColumnIndex = columnsArray.findIndex(column => column.name === newStatus);
+    //push onto newStatus array
+    draft.boards[boardIndex].columns[newColumnIndex].tasks.push(taskToUpdate[0]);
   });
   return updatedBoard;
 };

@@ -23,9 +23,8 @@ type Props = {
 export default function TaskViewCard({ task, completed, count, visible, setVisible, colNames, taskIndex, boardIndex, columnIndex, setBoardData, boardData }: Props) {
   const themeContext = useContext(ThemeContext);
 
-  let changeTaskStatus = () => {
-    console.log("click");
-    let result = updateTaskStatus(boardData, boardIndex, columnIndex, taskIndex, "Doing");
+  let changeTaskStatus = (newStatus: string) => {
+    let result = updateTaskStatus(boardData, boardIndex, columnIndex, taskIndex, newStatus);
     setBoardData(result);
   };
 
@@ -35,13 +34,7 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
       <div id="task-view-card" className={`modal ${themeContext?.theme}`}>
         <div className="task-header">
           <h1 className="heading-l">{task.title}</h1>
-          <button
-            onClick={() => {
-              changeTaskStatus();
-            }}
-          >
-            <img src={menu} alt="menu" />
-          </button>
+          <img src={menu} alt="menu" />
         </div>
         <h2 className="body-m">{task.description}</h2>
         <div className="subtasks-container">
@@ -50,7 +43,7 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
             return <SubtaskItem subtask={subtask} />;
           })}
         </div>
-        <StatusSelect task={task} colNames={colNames} />
+        <StatusSelect task={task} colNames={colNames} changeTaskStatus={changeTaskStatus} />
       </div>
     </>
   );

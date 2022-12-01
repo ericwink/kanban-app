@@ -4,7 +4,6 @@ import Boardview from "./components/views/Boardview";
 import Sidebar from "./components/navbars/Sidebar";
 import Navbar from "./components/navbars/Navbar";
 import data from "./data.json";
-import { updateTaskStatus } from "./utilities/immerFunctions";
 
 function App() {
   const themeContext = useContext(ThemeContext);
