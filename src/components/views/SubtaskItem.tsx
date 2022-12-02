@@ -18,7 +18,7 @@ export default function SubtaskItem({ subtask, boardIndex, taskIndex, columnInde
   };
 
   return (
-    <div onClick={() => changeSubtask()} className="subtask">
+    <div onClick={changeSubtask} className="subtask">
       <input type="checkbox" name="subtask" checked={subtask.isCompleted ? true : false} />
       <label className="body-b" htmlFor="subtask">
         {subtask.title}

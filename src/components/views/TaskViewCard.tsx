@@ -1,10 +1,10 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState } from "react";
+import { useContext, useState, ChangeEvent } from "react";
 import menu from "../../assets/icon-vertical-ellipsis.svg";
 import StatusSelect from "./StatusSelect";
 import { Tasks, BoardData } from "../../utilities/interface";
 import SubtaskItem from "./SubtaskItem";
-import { updateTaskStatus } from "../../utilities/immerFunctions";
+import { updateTaskStatus, deleteTask } from "../../utilities/immerFunctions";
 
 type Props = {
   task: Tasks;
@@ -29,6 +29,11 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
     setBoardData(result);
   };
 
+  let removeTask = () => {
+    let result = deleteTask(boardData, boardIndex, columnIndex, taskIndex);
+    setBoardData(result);
+  };
+
   return (
     <>
       <div id="modal-background" onClick={() => setVisible(!visible)}></div>
@@ -47,7 +52,9 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
             {showMenu ? (
               <div className={`edit-delete-wrapper ${themeContext?.theme}`}>
                 <button className="edit-task body-m">Edit Task</button>
-                <button className="delete-task body-m">Delete Task</button>
+                <button onClick={removeTask} className="delete-task body-m">
+                  Delete Task
+                </button>
               </div>
             ) : null}
           </div>

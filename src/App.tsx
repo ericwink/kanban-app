@@ -11,6 +11,7 @@ function App() {
   const [boardNames, setBoardNames] = useState([""]);
   const [sidebar, setSidebar] = useState(true);
   const [boardData, setBoardData] = useState(data);
+  const [showAddTask, setShowAddTask] = useState(false);
 
   useEffect(() => {
     const boardArray = boardData.boards.map(board => board.name);
@@ -20,9 +21,9 @@ function App() {
   return (
     <div className={`App ${themeContext?.theme}`}>
       <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} sidebar={sidebar} setSidebar={setSidebar} />
-      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} />
+      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} showAddTask={showAddTask} setShowAddTask={setShowAddTask} />
       {boardData.boards.map((board, index) => {
-        return <>{visible === board.name ? <Boardview boardIndex={index} board={board} key={board.name} sidebar={sidebar} setBoardData={setBoardData} boardData={boardData} /> : null}</>;
+        return <>{visible === board.name ? <Boardview boardIndex={index} board={board} key={board.name} sidebar={sidebar} setBoardData={setBoardData} boardData={boardData} showAddTask={showAddTask} setShowAddTask={setShowAddTask} /> : null}</>;
       })}
     </div>
   );

@@ -439,7 +439,9 @@ textarea::placeholder {
   flex-direction: column;
   padding: 24px;
   gap: 24px;
+  z-index: 999999;
   background-color: var(--clr-neutral-100);
+  transition: 0.5s;
 }
 #task-modal label,
 #board-modal label {
@@ -516,7 +518,7 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 280px;
+  min-width: 280px;
 }
 
 #column-view .column-title {
@@ -545,6 +547,19 @@ textarea::placeholder {
   width: 100vw;
   height: calc(100vh - 64px);
   overflow: auto;
+}
+
+#board-view button {
+  min-width: 280px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-neutral-300);
+  color: var(--clr-neutral-400);
+}
+
+#board-view button.dark {
+  background-color: var(--clr-neutral-600);
 }
 
 #sidebar,
