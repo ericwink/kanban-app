@@ -1,9 +1,12 @@
 import produce from "immer";
 import { BoardData } from "./interface";
 
-export let updateSubtask = () => {
-  //code
-  //send in the board index, column index, task index, subtask index
+export let updateSubtask = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, subtaskIndex: number) => {
+  let updatedBoard = produce(boardData, draft => {
+    let currentSubtask = draft.boards[boardIndex].columns[columnIndex].tasks[taskIndex].subtasks[subtaskIndex];
+    currentSubtask.isCompleted = !currentSubtask.isCompleted;
+  });
+  return updatedBoard;
 };
 
 //check and uncheck subtasks

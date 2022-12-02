@@ -74,6 +74,7 @@ body {
   line-height: 1.5;
   font-size: 16px;
   font-family: var(--ff-body);
+  overflow: hidden;
 }
 
 /* A elements that don't have a class get default styles */
@@ -267,6 +268,7 @@ textarea::placeholder {
   min-height: 100vh;
   min-width: fit-content;
   display: flex;
+  flex-direction: column;
   transition: 0.5s;
 }
 .App.dark {
@@ -286,7 +288,7 @@ textarea::placeholder {
 }
 
 #task-preview-card {
-  min-height: 88px;
+  height: fit-content;
   width: 280px;
   border-radius: 10px;
   display: flex;
@@ -351,6 +353,10 @@ textarea::placeholder {
   height: 20px;
 }
 
+#task-view-card .subtasks-container h3 {
+  margin-bottom: 16px;
+}
+
 #task-view-card .subtask {
   border-radius: 4px;
   background-color: var(--clr-neutral-200);
@@ -372,6 +378,52 @@ textarea::placeholder {
 #task-view-card input[type="checkbox"]:checked + label {
   text-decoration: line-through;
   color: var(--clr-neutral-400);
+}
+
+#task-view-card .options-wrapper {
+  position: relative;
+}
+
+#task-view-card .edit-delete {
+  background: none;
+  border: none;
+}
+#task-view-card .edit-delete:hover {
+  cursor: pointer;
+}
+
+#task-view-card .edit-delete-wrapper {
+  position: absolute;
+  height: 94px;
+  width: 192px;
+  padding: 16px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  z-index: 9999;
+  background-color: var(--clr-neutral-300);
+  right: -6em;
+  margin-top: 10px;
+}
+
+#task-view-card .edit-delete-wrapper.dark {
+  background-color: var(--clr-neutral-700);
+}
+
+#task-view-card .edit-task,
+#task-view-card .delete-task {
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+#task-view-card .edit-task {
+  color: var(--clr-neutral-400);
+}
+#task-view-card .delete-task {
+  color: var(--clr-secondary-400);
 }
 
 #status-select h3 {
@@ -490,7 +542,9 @@ textarea::placeholder {
   display: flex;
   gap: 24px;
   padding: 16px 16px;
-  margin-top: 64px;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  overflow: auto;
 }
 
 #sidebar,
@@ -499,9 +553,7 @@ textarea::placeholder {
 }
 
 #navbar {
-  position: fixed;
   box-sizing: border-box;
-  top: 0;
   min-width: 100%;
   height: 64px;
   display: flex;
@@ -631,6 +683,7 @@ textarea::placeholder {
   justify-content: center;
   background-color: var(--clr-neutral-200);
   align-self: center;
+  transition: 0.5s;
 }
 
 #theme-toggle.dark {
@@ -733,6 +786,9 @@ textarea::placeholder {
   #board-view[data-sidebar="show"] {
     margin-left: 261px;
     transition: 0.8s;
+  }
+  #board-view[data-sidebar="show"] {
+    width: calc(100vw - 261px);
   }
 
   #sidebar {
