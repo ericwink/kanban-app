@@ -347,8 +347,9 @@ textarea::placeholder {
 #task-view-card .task-header {
   display: flex;
   align-items: center;
-  gap: 2em;
+  justify-content: space-between;
 }
+
 #task-view-card img {
   height: 20px;
 }
@@ -387,6 +388,7 @@ textarea::placeholder {
 #task-view-card .edit-delete {
   background: none;
   border: none;
+  min-width: fit-content;
 }
 #task-view-card .edit-delete:hover {
   cursor: pointer;
@@ -491,6 +493,20 @@ textarea::placeholder {
 #board-modal.dark input::placeholder,
 #board-modal.dark textarea::placeholder {
   color: #606169;
+}
+
+#task-modal .new-subtask-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#task-modal .new-subtask-wrapper input {
+  width: calc(100% - 30px);
+}
+
+#task-modal .delete-subtask {
+  background: none;
+  min-width: 16px;
 }
 
 #delete-modal {

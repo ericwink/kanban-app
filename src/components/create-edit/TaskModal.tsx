@@ -2,6 +2,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { useContext, useState, ChangeEvent } from "react";
 import StatusSelect from "../views/StatusSelect";
 import { Tasks, Subtask, BoardData } from "../../utilities/interface";
+import deleteIcon from "../../assets/icon-cross.svg";
 
 type Props = {
   showAddTask: boolean;
@@ -93,7 +94,9 @@ export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNe
             return (
               <div className="new-subtask-wrapper">
                 <input onChange={e => editSubtask(index, e.target.value)} value={each.title} type="text" name="subtask" placeholder="e.g. Make coffee" />
-                <button onClick={() => removeSubtask(index)}>X</button>
+                <button onClick={() => removeSubtask(index)} className="delete-subtask">
+                  <img src={deleteIcon} alt="delete" />
+                </button>
               </div>
             );
           })}
