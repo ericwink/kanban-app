@@ -5,6 +5,7 @@ import StatusSelect from "./StatusSelect";
 import { Tasks, BoardData } from "../../utilities/interface";
 import SubtaskItem from "./SubtaskItem";
 import { updateTaskStatus, deleteTask } from "../../utilities/immerFunctions";
+import DeleteModal from "../DeleteModal";
 
 type Props = {
   task: Tasks;
@@ -34,6 +35,9 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
     setBoardData(result);
   };
 
+  //delete board modal state and functions
+  const [deleteModal, setDeleteModal] = useState(false);
+
   return (
     <>
       <div id="modal-background" onClick={() => setVisible(!visible)}></div>
@@ -52,7 +56,12 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
             {showMenu ? (
               <div className={`edit-delete-wrapper ${themeContext?.theme}`}>
                 <button className="edit-task body-m">Edit Task</button>
-                <button onClick={removeTask} className="delete-task body-m">
+                <button
+                  onClick={() => {
+                    setDeleteModal(true);
+                  }}
+                  className="delete-task body-m"
+                >
                   Delete Task
                 </button>
               </div>
@@ -68,6 +77,7 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
         </div>
         <StatusSelect task={task} colNames={colNames} changeTaskStatus={changeTaskStatus} />
       </div>
+      {deleteModal ? <DeleteModal setDeleteModal={setDeleteModal} item={"task"} title={task.title} removeTask={removeTask} /> : null}
     </>
   );
 }

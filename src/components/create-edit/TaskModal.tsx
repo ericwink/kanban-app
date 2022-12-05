@@ -38,6 +38,7 @@ export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNe
 
   let addSubtask = () => {
     let subtaskCopy = [...newSubtask, { title: "", isCompleted: false }];
+    console.log(subtaskCopy);
     setNewSubtask(subtaskCopy);
   };
 
