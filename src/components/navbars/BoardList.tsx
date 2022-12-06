@@ -5,9 +5,10 @@ type Props = {
   boardNames: string[];
   visible: string;
   setVisible: React.Dispatch<React.SetStateAction<string>>;
+  setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function BoardList({ boardNames, visible, setVisible }: Props) {
+export default function BoardList({ boardNames, visible, setVisible, setShowAddBoard }: Props) {
   const themeContext = useContext(ThemeContext);
 
   return (
@@ -20,7 +21,9 @@ export default function BoardList({ boardNames, visible, setVisible }: Props) {
           </button>
         );
       })}
-      <button className="new-board">+ Create New Board</button>
+      <button onClick={() => setShowAddBoard(true)} className="new-board">
+        + Create New Board
+      </button>
     </div>
   );
 }

@@ -11,16 +11,17 @@ type Props = {
   setVisible: React.Dispatch<React.SetStateAction<string>>;
   sidebar: boolean;
   setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Sidebar({ boardNames, visible, setVisible, sidebar, setSidebar }: Props) {
+export default function Sidebar({ boardNames, visible, setVisible, sidebar, setSidebar, setShowAddBoard }: Props) {
   const themeContext = useContext(ThemeContext);
 
   return (
     <>
       <div id="sidebar" data-sidebar={!sidebar ? "hidden" : "show"} className={themeContext?.theme}>
         <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
-        <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} />
+        <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} setShowAddBoard={setShowAddBoard} />
         <ThemeToggle />
         <button onClick={() => setSidebar(false)} className="hide-sidebar">
           Hide Sidebar

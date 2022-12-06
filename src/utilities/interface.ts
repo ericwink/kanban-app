@@ -24,10 +24,6 @@ export type Boards = {
   boards?: Board[];
 };
 
-// export type BoardData = {
-//   boards?: [{ name?: string; columns?: [{ name?: string; tasks?: [{ title?: string; descripton?: string; status?: string; subtasks?: [{ title?: string; isCompleted?: boolean }] }] }] }];
-// };
-
 export type BoardData = {
   boards: {
     name: string;

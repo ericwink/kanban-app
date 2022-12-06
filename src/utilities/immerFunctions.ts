@@ -1,5 +1,5 @@
 import produce from "immer";
-import { BoardData, Tasks } from "./interface";
+import { BoardData, Tasks, Board } from "./interface";
 
 //check and uncheck subtasks
 export let updateSubtask = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, subtaskIndex: number) => {
@@ -56,4 +56,11 @@ export let addColumn = (boardData: BoardData, boardIndex: number, columnName: st
   });
   return updatedBoard;
 };
+
 //add a board
+export let addNewBoard = (boardData: BoardData, newBoard: Board) => {
+  let updatedBoard = produce(boardData, draft => {
+    draft.boards.push(newBoard);
+  });
+  return updatedBoard;
+};
