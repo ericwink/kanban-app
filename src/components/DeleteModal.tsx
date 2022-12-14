@@ -4,7 +4,7 @@ import { useContext } from "react";
 type Props = {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   item: string;
-  title: string;
+  title: string | undefined;
   removeTask: () => void;
 };
 
@@ -12,7 +12,6 @@ export default function DeleteModal({ setDeleteModal, item, title, removeTask }:
   const theme = useContext(ThemeContext);
 
   return (
-    // add 'modal' to class list
     <>
       <div id="modal-background" onClick={() => setDeleteModal(false)}></div>
       <div id="delete-modal" className={`modal ${theme}`}>
@@ -28,11 +27,3 @@ export default function DeleteModal({ setDeleteModal, item, title, removeTask }:
     </>
   );
 }
-
-//heading to be dynamic based on what we are deleting
-//information in body should update
-//background to cancel
-//cancel button will cancel
-//delete button proceeds with action
-
-//primary function should return true/false to delete function to proceed with operation

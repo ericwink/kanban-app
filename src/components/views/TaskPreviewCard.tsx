@@ -5,7 +5,7 @@ import TaskViewCard from "./TaskViewCard";
 
 type Props = {
   task: Tasks;
-  colNames: string[];
+  colNames: string[] | undefined;
   boardIndex: number;
   columnIndex: number;
   taskIndex: number;

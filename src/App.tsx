@@ -36,7 +36,9 @@ function App() {
       <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} showAddTask={showAddTask} setShowAddTask={setShowAddTask} />
 
       {boardData.boards.map((board, index) => {
-        return <>{visible === board.name ? <Boardview boardIndex={index} board={board} key={board.name} sidebar={sidebar} setBoardData={setBoardData} boardData={boardData} showAddTask={showAddTask} setShowAddTask={setShowAddTask} /> : null}</>;
+        if (visible === board.name) {
+          return <Boardview boardIndex={index} board={board} key={board.name} sidebar={sidebar} setBoardData={setBoardData} boardData={boardData} showAddTask={showAddTask} setShowAddTask={setShowAddTask} />;
+        }
       })}
     </div>
   );

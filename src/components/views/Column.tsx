@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 type Props = {
   column: Columns;
-  colNames: string[];
+  colNames: string[] | undefined;
   boardIndex: number;
   columnIndex: number;
   setBoardData: React.Dispatch<React.SetStateAction<BoardData>>;

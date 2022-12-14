@@ -1,7 +1,8 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState } from "react";
-import { Columns, Board } from "../../utilities/interface";
+import { useContext } from "react";
+import { Board } from "../../utilities/interface";
 import deleteCol from "../../assets/icon-cross.svg";
+import useMakeBoard from "../hooks/useMakeBoard";
 
 type Props = {
   setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,29 +12,7 @@ type Props = {
 export default function BoardModal({ setShowAddBoard, addBoard }: Props) {
   const theme = useContext(ThemeContext);
 
-  //state for the board name
-  const [boardName, setBoardName] = useState("");
-
-  //state for the columns[]
-  const [columns, setColumns] = useState<Columns[]>([]);
-
-  //column[] push object {name: 'name', tasks: []}
-  let addColumn = () => {
-    let copy = [...columns, { name: "", tasks: [] }];
-    setColumns(copy);
-  };
-
-  let removeColumn = (index: number) => {
-    let copy = [...columns];
-    copy.splice(index, 1);
-    setColumns(copy);
-  };
-
-  let updateColName = (index: number, name: string) => {
-    let copy = [...columns];
-    copy[index].name = name;
-    setColumns(copy);
-  };
+  let { boardName, setBoardName, columns, updateColName, removeColumn, addColumn } = useMakeBoard();
 
   let sendBoard = () => {
     //combine our states into a board object

@@ -1,8 +1,9 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState, ChangeEvent } from "react";
+import { useContext } from "react";
 import StatusSelect from "../views/StatusSelect";
-import { Tasks, Subtask, BoardData } from "../../utilities/interface";
+import { Tasks } from "../../utilities/interface";
 import deleteIcon from "../../assets/icon-cross.svg";
+import useMakeTask from "../hooks/useMakeTask";
 
 type Props = {
   showAddTask: boolean;
@@ -13,46 +14,7 @@ type Props = {
 
 export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNewTask }: Props) {
   const theme = useContext(ThemeContext);
-
-  // edit new task data in modal
-  const [newTask, setNewTask] = useState<Tasks>({
-    title: "",
-    description: "",
-    status: colNames[0],
-  });
-
-  let editNewTask = (e: ChangeEvent<HTMLInputElement>) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    let copy = { ...newTask, [name]: value };
-    setNewTask(copy);
-  };
-
-  let changeTaskStatus = (newStatus: string) => {
-    let copy = { ...newTask, status: newStatus };
-    setNewTask(copy);
-  };
-
-  //edit subtask data in modal
-  const [newSubtask, setNewSubtask] = useState<Subtask[]>([]);
-
-  let addSubtask = () => {
-    let subtaskCopy = [...newSubtask, { title: "", isCompleted: false }];
-    console.log(subtaskCopy);
-    setNewSubtask(subtaskCopy);
-  };
-
-  let removeSubtask = (index: number) => {
-    let copy = [...newSubtask];
-    copy.splice(index, 1);
-    setNewSubtask(copy);
-  };
-
-  let editSubtask = (index: number, value: string) => {
-    let copy = [...newSubtask];
-    copy[index].title = value;
-    setNewSubtask(copy);
-  };
+  let { newTask, newSubtask, editNewTask, editSubtask, removeSubtask, addSubtask, changeTaskStatus } = useMakeTask(colNames);
 
   // send subtask to immer function sheet to add to board
   let createTask = () => {
@@ -84,8 +46,8 @@ export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNe
             value={newTask.description}
             name="description"
             id="de scription"
-            cols="30"
-            rows="5"
+            cols={30}
+            rows={5}
             placeholder="e.g. It's always good to take a break. This 15 minutes break will recharge the batteries a little."
           ></textarea>
         </div>

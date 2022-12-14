@@ -10,9 +10,6 @@ export let updateSubtask = (boardData: BoardData, boardIndex: number, columnInde
   return updatedBoard;
 };
 
-//add a subtask
-//delete a subtask??
-
 //change task to other column/update status
 export let updateTaskStatus = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, newStatus: string) => {
   let updatedBoard = produce(boardData, draft => {
@@ -48,6 +45,11 @@ export let addTask = (boardData: BoardData, boardIndex: number, newTask: Tasks) 
   });
   return updatedBoard;
 };
+
+//'edit' a task
+//store new task in a variable - maybe spread it so we make a copy of it?
+//call delete method to remove the current version of the task - store the return value
+//call the add task method with boardData from above, and new task
 
 //add a column
 export let addColumn = (boardData: BoardData, boardIndex: number, columnName: string) => {

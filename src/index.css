@@ -193,8 +193,8 @@ button:hover {
 }
 
 .btn-destructive {
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-secondary-400);
+  color: var(--clr-neutral-100) !important;
+  background-color: var(--clr-secondary-400) !important;
 }
 .btn-destructive:hover {
   background-color: var(--clr-secondary-300);
