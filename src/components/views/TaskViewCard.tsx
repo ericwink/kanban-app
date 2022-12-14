@@ -1,11 +1,13 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState, ChangeEvent } from "react";
+import { useContext, useState } from "react";
 import menu from "../../assets/icon-vertical-ellipsis.svg";
 import StatusSelect from "./StatusSelect";
 import { Tasks, BoardData } from "../../utilities/interface";
 import SubtaskItem from "./SubtaskItem";
 import { updateTaskStatus, deleteTask } from "../../utilities/immerFunctions";
 import DeleteModal from "../DeleteModal";
+import TaskModal from "../create-edit/TaskModal";
+import { editTaskImmer } from "../../utilities/immerFunctions";
 
 type Props = {
   task: Tasks;
@@ -37,6 +39,14 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
 
   //delete board modal state and functions
   const [deleteModal, setDeleteModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+
+  //edit task function
+  let editTask = (editedTask: Tasks) => {
+    let result = editTaskImmer(boardData, boardIndex, columnIndex, taskIndex, editedTask);
+    setBoardData(result);
+    // console.log(result);
+  };
 
   return (
     <>
@@ -55,7 +65,9 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
             </button>
             {showMenu ? (
               <div className={`edit-delete-wrapper ${themeContext?.theme}`}>
-                <button className="edit-task body-m">Edit Task</button>
+                <button onClick={() => setEditModal(true)} className="edit-task body-m">
+                  Edit Task
+                </button>
                 <button
                   onClick={() => {
                     setDeleteModal(true);
@@ -78,6 +90,7 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
         <StatusSelect task={task} colNames={colNames} changeTaskStatus={changeTaskStatus} />
       </div>
       {deleteModal ? <DeleteModal setDeleteModal={setDeleteModal} item={"task"} title={task.title} removeTask={removeTask} /> : null}
+      {editModal ? <TaskModal setShowModal={setEditModal} colNames={colNames} returnTask={editTask} task={task} /> : null}
     </>
   );
 }

@@ -10,11 +10,10 @@ type Props = {
   boardNames: string[];
   setVisible: React.Dispatch<React.SetStateAction<string>>;
   sidebar: boolean;
-  showAddTask: boolean;
   setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Navbar({ visible, boardNames, setVisible, sidebar, showAddTask, setShowAddTask }: Props) {
+export default function Navbar({ visible, boardNames, setVisible, sidebar, setShowAddTask }: Props) {
   const [menu, showMenu] = useState(false);
   const themeContext = useContext(ThemeContext);
 
@@ -31,7 +30,7 @@ export default function Navbar({ visible, boardNames, setVisible, sidebar, showA
       </button>
       <button
         onClick={() => {
-          setShowAddTask(!showAddTask);
+          setShowAddTask(true);
         }}
         className="add"
       ></button>

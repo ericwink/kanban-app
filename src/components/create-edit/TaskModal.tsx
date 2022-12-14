@@ -6,23 +6,23 @@ import deleteIcon from "../../assets/icon-cross.svg";
 import useMakeTask from "../hooks/useMakeTask";
 
 type Props = {
-  showAddTask: boolean;
-  setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   colNames: string[];
-  addNewTask: (newTask: Tasks) => void;
+  returnTask: (newTask: Tasks) => void;
+  task?: Tasks;
 };
 
-export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNewTask }: Props) {
+export default function TaskModal({ setShowModal, colNames, returnTask, task }: Props) {
   const theme = useContext(ThemeContext);
-  let { newTask, newSubtask, editNewTask, editSubtask, removeSubtask, addSubtask, changeTaskStatus } = useMakeTask(colNames);
+  let { newTask, newSubtask, editNewTask, editSubtask, removeSubtask, addSubtask, changeTaskStatus } = useMakeTask(colNames, task);
 
   // send subtask to immer function sheet to add to board
   let createTask = () => {
     let finalTask = { ...newTask };
     let finalSubtask = [...newSubtask];
     finalTask.subtasks = finalSubtask;
-    addNewTask(finalTask);
-    setShowAddTask(!showAddTask);
+    returnTask(finalTask);
+    setShowModal(false);
   };
 
   return (
@@ -30,11 +30,11 @@ export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNe
       <div
         id="modal-background"
         onClick={() => {
-          setShowAddTask(!showAddTask);
+          setShowModal(false);
         }}
       ></div>
       <div id="task-modal" className={`modal ${theme?.theme}`}>
-        <h1 className="heading-l">Add New Task</h1>
+        <h1 className="heading-l">{task ? "Edit Task" : "Add New Task"}</h1>
         <div className="container">
           <label htmlFor="title">Title</label>
           <input onChange={e => editNewTask(e)} value={newTask.title} type="text" name="title" placeholder="e.g. Take coffee break" />
@@ -67,7 +67,7 @@ export default function TaskModal({ showAddTask, setShowAddTask, colNames, addNe
         <button onClick={addSubtask} className="btn-s btn-secondary">
           + Add New Subtask
         </button>
-        <StatusSelect colNames={colNames} changeTaskStatus={changeTaskStatus} />
+        <StatusSelect task={task} colNames={colNames} changeTaskStatus={changeTaskStatus} />
         <button onClick={createTask} className="btn-s btn-primary">
           Create Task
         </button>

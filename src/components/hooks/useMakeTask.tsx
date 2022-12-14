@@ -1,12 +1,12 @@
 import { useState, ChangeEvent } from "react";
 import { Tasks, Subtask } from "../../utilities/interface";
 
-let useMakeTask = (colNames: string[]) => {
+let useMakeTask = (colNames: string[], task?: Tasks) => {
   // edit new task data in modal
   const [newTask, setNewTask] = useState<Tasks>({
-    title: "",
-    description: "",
-    status: colNames[0],
+    title: task?.title || "",
+    description: task?.description || "",
+    status: task?.status || colNames[0],
   });
 
   let editNewTask = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +22,7 @@ let useMakeTask = (colNames: string[]) => {
   };
 
   //edit subtask data in modal
-  const [newSubtask, setNewSubtask] = useState<Subtask[]>([]);
+  const [newSubtask, setNewSubtask] = useState<Subtask[]>(task?.subtasks || []);
 
   let addSubtask = () => {
     let subtaskCopy = [...newSubtask, { title: "", isCompleted: false }];

@@ -37,19 +37,27 @@ export let deleteTask = (boardData: BoardData, boardIndex: number, columnIndex: 
 };
 
 //add a task
-export let addTask = (boardData: BoardData, boardIndex: number, newTask: Tasks) => {
+export let addTask = (boardData: BoardData, boardIndex: number, newTask: Tasks, taskIndex = -1) => {
   let updatedBoard = produce(boardData, draft => {
     let columnsArray = draft.boards[boardIndex].columns;
     let ColumnIndex = columnsArray.findIndex(column => column.name === newTask.status);
-    draft.boards[boardIndex].columns[ColumnIndex].tasks.push(newTask);
+    if (taskIndex >= 0) {
+      draft.boards[boardIndex].columns[ColumnIndex].tasks.splice(taskIndex, 0, newTask);
+    } else {
+      draft.boards[boardIndex].columns[ColumnIndex].tasks.push(newTask);
+    }
   });
   return updatedBoard;
 };
 
 //'edit' a task
-//store new task in a variable - maybe spread it so we make a copy of it?
-//call delete method to remove the current version of the task - store the return value
-//call the add task method with boardData from above, and new task
+export let editTaskImmer = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, editedTask: Tasks) => {
+  //call delete method to remove the current version of the task
+  let tempBoard = deleteTask(boardData, boardIndex, columnIndex, taskIndex);
+  //call the add task method with boardData from above, and new task
+  let finalBoard = addTask(tempBoard, boardIndex, editedTask, taskIndex);
+  return finalBoard;
+};
 
 //add a column
 export let addColumn = (boardData: BoardData, boardIndex: number, columnName: string) => {
