@@ -11,9 +11,10 @@ type Props = {
   setVisible: React.Dispatch<React.SetStateAction<string>>;
   sidebar: boolean;
   setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Navbar({ visible, boardNames, setVisible, sidebar, setShowAddTask }: Props) {
+export default function Navbar({ visible, boardNames, setVisible, sidebar, setShowAddTask, setShowAddBoard }: Props) {
   const [menu, showMenu] = useState(false);
   const themeContext = useContext(ThemeContext);
 
@@ -41,7 +42,7 @@ export default function Navbar({ visible, boardNames, setVisible, sidebar, setSh
       {!menu ? null : (
         <>
           <div className={`floating-menu ${themeContext?.theme}`}>
-            <BoardList boardNames={boardNames} visible={visible} setVisible={setVisible} />
+            <BoardList boardNames={boardNames} visible={visible} setVisible={setVisible} setShowAddBoard={setShowAddBoard} />
             <ThemeToggle />
           </div>
           <div id="modal-background" className="navbar" onClick={() => showMenu(!menu)}></div>

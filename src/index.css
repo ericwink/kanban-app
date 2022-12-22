@@ -649,7 +649,7 @@ textarea::placeholder {
   position: fixed;
   top: 5em;
   width: 264px;
-  height: 322px;
+  min-height: 322px;
   background-color: var(--clr-neutral-100);
   border: 1px solid black;
   border-radius: 10px;
