@@ -43,7 +43,9 @@ export default function TaskViewCard({ task, completed, count, visible, setVisib
 
   //edit task function
   let editTask = (editedTask: Tasks) => {
-    let result = editTaskImmer(boardData, boardIndex, columnIndex, taskIndex, editedTask);
+    //compare new version of task to previous - status. True = unchanged
+    const statusUnchanged = task.status === editedTask.status;
+    let result = editTaskImmer(boardData, boardIndex, columnIndex, taskIndex, editedTask, statusUnchanged);
     setBoardData(result);
     // console.log(result);
   };
