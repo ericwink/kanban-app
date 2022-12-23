@@ -51,11 +51,18 @@ export let addTask = (boardData: BoardData, boardIndex: number, newTask: Tasks, 
 };
 
 //'edit' a task
-export let editTaskImmer = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, editedTask: Tasks) => {
+export let editTaskImmer = (boardData: BoardData, boardIndex: number, columnIndex: number, taskIndex: number, editedTask: Tasks, statusUnchanged: boolean) => {
   //call delete method to remove the current version of the task
   let tempBoard = deleteTask(boardData, boardIndex, columnIndex, taskIndex);
-  //call the add task method with boardData from above, and new task
-  let finalBoard = addTask(tempBoard, boardIndex, editedTask, taskIndex);
+
+  //if statusUnchanged = true, DO send in task index
+  //else, exclude taskIndex
+  let finalBoard;
+  if (statusUnchanged) {
+    //call the add task method with boardData from above, and new task
+    finalBoard = addTask(tempBoard, boardIndex, editedTask, taskIndex);
+  } else finalBoard = addTask(tempBoard, boardIndex, editedTask);
+
   return finalBoard;
 };
 
