@@ -8,6 +8,16 @@ import BoardModal from "./components/create-edit/BoardModal";
 import { Board } from "../src/utilities/interface";
 import { addNewBoard } from "../src/utilities/immerFunctions";
 
+//to-do
+//Board is empty, create new column (boardlist view)
+//New column button in boardview -- set up modal
+//Edit modal button should say 'save changes'
+//Edit board modal
+//Delete modal theme - light/dark
+//three button menu - edit/delete board pop-up
+//validation for all forms
+//review sizing for modals in mobile views
+
 function App() {
   const themeContext = useContext(ThemeContext);
   const [visible, setVisible] = useState("");

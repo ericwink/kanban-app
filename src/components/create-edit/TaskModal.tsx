@@ -69,7 +69,7 @@ export default function TaskModal({ setShowModal, colNames, returnTask, task }: 
         </button>
         <StatusSelect task={task} colNames={colNames} changeTaskStatus={changeTaskStatus} />
         <button onClick={createTask} className="btn-s btn-primary">
-          Create Task
+          {task ? "Save Changes" : "Create Task"}
         </button>
       </div>
     </>
