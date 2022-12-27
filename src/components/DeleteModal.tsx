@@ -5,11 +5,16 @@ type Props = {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   item: string;
   title: string | undefined;
-  removeTask: () => void;
+  removeItem: () => void;
 };
 
-export default function DeleteModal({ setDeleteModal, item, title, removeTask }: Props) {
+export default function DeleteModal({ setDeleteModal, item, title, removeItem }: Props) {
   const theme = useContext(ThemeContext);
+
+  const deleteAndClose = () => {
+    removeItem();
+    setDeleteModal(false);
+  };
 
   return (
     <>
@@ -17,7 +22,7 @@ export default function DeleteModal({ setDeleteModal, item, title, removeTask }:
       <div id="delete-modal" className={`modal ${theme}`}>
         <h1 className="heading-l">{`Delete this ${item}?`}</h1>
         <p className="body-m">{`Are you sure you want to delete the '${title}' ${item}? This action will remove all ${item === "task" ? "task data and subtasks" : "columns and tasks"} and cannot be reversed`}</p>
-        <button className="btn-l btn-destructive" onClick={removeTask}>
+        <button className="btn-l btn-destructive" onClick={deleteAndClose}>
           Delete
         </button>
         <button className="btn-l btn-secondary" onClick={() => setDeleteModal(false)}>

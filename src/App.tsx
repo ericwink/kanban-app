@@ -6,16 +6,20 @@ import Navbar from "./components/navbars/Navbar";
 import data from "./data.json";
 import BoardModal from "./components/create-edit/BoardModal";
 import { Board } from "../src/utilities/interface";
-import { addNewBoard } from "../src/utilities/immerFunctions";
+import { addNewBoard, deleteBoardImmer } from "../src/utilities/immerFunctions";
 
 //to-do
 //Board is empty, create new column (boardlist view)
+
 //New column button in boardview -- set up modal
-//Edit modal button should say 'save changes'
-//Edit board modal
-//Delete modal theme - light/dark
+
 //three button menu - edit/delete board pop-up
+//Edit board modal
+
+//Delete modal theme - light/dark
+
 //validation for all forms
+
 //review sizing for modals in mobile views
 
 function App() {
@@ -32,8 +36,13 @@ function App() {
     setBoardNames([...boardArray]);
   }, [boardData]);
 
-  let addBoard = (newBoard: Board) => {
+  const addBoard = (newBoard: Board) => {
     let result = addNewBoard(boardData, newBoard);
+    setBoardData(result);
+  };
+
+  const deleteBoard = (boardName: string) => {
+    const result = deleteBoardImmer(boardData, boardName);
     setBoardData(result);
   };
 
@@ -43,7 +52,7 @@ function App() {
 
       <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} sidebar={sidebar} setSidebar={setSidebar} setShowAddBoard={setShowAddBoard} />
 
-      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} setShowAddTask={setShowAddTask} setShowAddBoard={setShowAddBoard} />
+      <Navbar visible={visible} boardNames={boardNames} setVisible={setVisible} sidebar={sidebar} setShowAddTask={setShowAddTask} setShowAddBoard={setShowAddBoard} deleteBoard={deleteBoard} />
 
       {boardData.boards.map((board, index) => {
         if (visible === board.name) {
