@@ -20,24 +20,28 @@ export default function Navbar({ visible, boardNames, setVisible, sidebar, setSh
 
   return (
     <div id="navbar" data-sidebar={sidebar ? "show" : "hidden"} className={themeContext?.theme}>
-      <img src={smallLogo} alt="Kanban Logo" className="mobile-logo" />
-      <button
-        className="heading-l menu"
-        onClick={() => {
-          showMenu(!menu);
-        }}
-      >
-        {visible ? visible : "Select a board"}
-      </button>
-      <button
-        onClick={() => {
-          setShowAddTask(true);
-        }}
-        className="add"
-      ></button>
-      <button className="burger">
-        <img src={burger} alt="burger-menu" />
-      </button>
+      <div className="inner-nav-box">
+        <img src={smallLogo} alt="Kanban Logo" className="mobile-logo" />
+        <button
+          className="heading-l menu"
+          onClick={() => {
+            showMenu(!menu);
+          }}
+        >
+          {visible ? visible : "Select a board"}
+        </button>
+      </div>
+      <div className="inner-nav-box">
+        <button
+          onClick={() => {
+            setShowAddTask(true);
+          }}
+          className="add btn-primary"
+        ></button>
+        <button className="burger">
+          <img src={burger} alt="burger-menu" />
+        </button>
+      </div>
 
       {!menu ? null : (
         <>
