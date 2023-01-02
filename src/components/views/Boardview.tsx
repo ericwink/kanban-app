@@ -23,7 +23,7 @@ export default function Boardview({ board, sidebar, boardIndex, setBoardData, bo
   const themeContext = useContext(ThemeContext);
 
   let newColumn = () => {
-    let result = addColumn(boardData, 0, "Test Column");
+    let result = addColumn(boardData, 0, "New Column");
     setBoardData(result);
   };
 

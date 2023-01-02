@@ -7,12 +7,13 @@ import useMakeBoard from "../hooks/useMakeBoard";
 type Props = {
   setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
   addBoard: (newBoard: Board) => void;
+  boardData?: Board;
 };
 
-export default function BoardModal({ setShowAddBoard, addBoard }: Props) {
+export default function BoardModal({ setShowAddBoard, addBoard, boardData }: Props) {
   const theme = useContext(ThemeContext);
 
-  let { boardName, setBoardName, columns, updateColName, removeColumn, addColumn } = useMakeBoard();
+  let { boardName, setBoardName, columns, updateColName, removeColumn, addColumn } = useMakeBoard(boardData);
 
   let sendBoard = () => {
     //combine our states into a board object
@@ -26,7 +27,7 @@ export default function BoardModal({ setShowAddBoard, addBoard }: Props) {
     <>
       <div id="modal-background" onClick={() => setShowAddBoard(false)}></div>
       <div id="board-modal" className={`modal ${theme?.theme}`}>
-        <h1 className="heading-l">Add New Board</h1>
+        <h1 className="heading-l">{boardData ? "Edit Board" : "Add New Board"}</h1>
         <div className="container">
           <label htmlFor="title">Board Name</label>
           <input onChange={e => setBoardName(e.target.value)} value={boardName} type="text" name="title" placeholder="e.g. Web Design" />
@@ -48,7 +49,7 @@ export default function BoardModal({ setShowAddBoard, addBoard }: Props) {
           + Add New Column
         </button>
         <button onClick={sendBoard} className="btn-s btn-primary">
-          Create New Board
+          {boardData ? "Edit Board" : "Create New Board"}
         </button>
       </div>
     </>
