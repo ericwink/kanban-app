@@ -1,10 +1,9 @@
 import smallLogo from "../../assets/logo-mobile.svg";
+import burger from "../../assets/icon-vertical-ellipsis.svg";
 import BoardList from "./BoardList";
 import ThemeToggle from "./ThemeToggle";
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import EditDeleteBox from "../create-edit/EditDeleteBox";
-import DeleteModal from "../DeleteModal";
 
 type Props = {
   visible: string;
@@ -13,15 +12,11 @@ type Props = {
   sidebar: boolean;
   setShowAddTask: React.Dispatch<React.SetStateAction<boolean>>;
   setShowAddBoard: React.Dispatch<React.SetStateAction<boolean>>;
-  deleteBoard: (boardName: string) => void;
 };
 
-export default function Navbar({ visible, boardNames, setVisible, sidebar, setShowAddTask, setShowAddBoard, deleteBoard }: Props) {
+export default function Navbar({ visible, boardNames, setVisible, sidebar, setShowAddTask, setShowAddBoard }: Props) {
   const [menu, showMenu] = useState(false);
   const themeContext = useContext(ThemeContext);
-
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
 
   return (
     <div id="navbar" data-sidebar={sidebar ? "show" : "hidden"} className={themeContext?.theme}>
@@ -43,8 +38,11 @@ export default function Navbar({ visible, boardNames, setVisible, sidebar, setSh
           }}
           className="add btn-primary"
         ></button>
-        <EditDeleteBox setDeleteModal={setDeleteModal} setEditModal={setEditModal} type="Board" />
+        <button className="burger">
+          <img src={burger} alt="burger-menu" />
+        </button>
       </div>
+
       {!menu ? null : (
         <>
           <div className={`floating-menu ${themeContext?.theme}`}>
@@ -54,7 +52,6 @@ export default function Navbar({ visible, boardNames, setVisible, sidebar, setSh
           <div id="modal-background" className="navbar" onClick={() => showMenu(!menu)}></div>
         </>
       )}
-      {deleteModal ? <DeleteModal setDeleteModal={setDeleteModal} item="board" title={visible} removeItem={() => deleteBoard(visible)} /> : null}
     </div>
   );
 }

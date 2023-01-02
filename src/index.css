@@ -197,7 +197,7 @@ button:hover {
   background-color: var(--clr-secondary-400) !important;
 }
 .btn-destructive:hover {
-  background-color: var(--clr-secondary-300) !important;
+  background-color: var(--clr-secondary-300);
 }
 
 /* modal class to center any modal elements on screen */
@@ -206,11 +206,7 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
-  min-height: fit-content;
-  max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  z-index: 999;
 }
 
 /* custom checkboxes */
@@ -288,54 +284,7 @@ textarea::placeholder {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 99999;
-}
-
-#edit-delete-box .options-wrapper {
-  position: relative;
-}
-
-#edit-delete-box .edit-delete {
-  background: none;
-  border: none;
-  min-width: 10px;
-}
-#edit-delete-box .edit-delete:hover {
-  cursor: pointer;
-}
-
-#edit-delete-box .edit-delete-wrapper {
-  position: absolute;
-  height: 94px;
-  width: 192px;
-  padding: 16px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  z-index: 9999;
-  background-color: var(--clr-neutral-300);
-  right: -6em;
-  margin-top: 10px;
-}
-
-#edit-delete-box .edit-delete-wrapper.dark {
-  background-color: var(--clr-neutral-700);
-}
-
-#edit-delete-box .edit-task,
-#edit-delete-box .delete-task {
-  background: none;
-  border: none;
-  text-align: left;
-}
-
-#edit-delete-box .edit-task {
-  color: var(--clr-neutral-400);
-}
-#edit-delete-box .delete-task {
-  color: var(--clr-secondary-400);
+  z-index: 999;
 }
 
 #task-preview-card {
@@ -430,6 +379,53 @@ textarea::placeholder {
 #task-view-card input[type="checkbox"]:checked + label {
   text-decoration: line-through;
   color: var(--clr-neutral-400);
+}
+
+#task-view-card .options-wrapper {
+  position: relative;
+}
+
+#task-view-card .edit-delete {
+  background: none;
+  border: none;
+  min-width: fit-content;
+}
+#task-view-card .edit-delete:hover {
+  cursor: pointer;
+}
+
+#task-view-card .edit-delete-wrapper {
+  position: absolute;
+  height: 94px;
+  width: 192px;
+  padding: 16px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  z-index: 9999;
+  background-color: var(--clr-neutral-300);
+  right: -6em;
+  margin-top: 10px;
+}
+
+#task-view-card .edit-delete-wrapper.dark {
+  background-color: var(--clr-neutral-700);
+}
+
+#task-view-card .edit-task,
+#task-view-card .delete-task {
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+#task-view-card .edit-task {
+  color: var(--clr-neutral-400);
+}
+#task-view-card .delete-task {
+  color: var(--clr-secondary-400);
 }
 
 #status-select h3 {
@@ -608,12 +604,7 @@ textarea::placeholder {
   gap: 16px;
   background-color: var(--clr-neutral-100);
   border-bottom: 1px solid var(--clr-neutral-300);
-  z-index: 2;
-}
-
-#navbar #edit-delete-box .edit-delete-wrapper {
-  right: 0em;
-  margin-top: 35px;
+  z-index: 1;
 }
 
 #navbar .inner-nav-box {
@@ -669,7 +660,7 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 9999999;
+  z-index: 9999;
 }
 
 #navbar .floating-menu.dark {
@@ -823,11 +814,6 @@ textarea::placeholder {
     display: flex;
     gap: 24px;
     padding: 16px 24px;
-    height: calc(100vh - 96px);
-  }
-
-  #navbar {
-    height: 96px;
   }
 
   #navbar .menu {

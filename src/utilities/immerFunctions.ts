@@ -81,12 +81,3 @@ export let addNewBoard = (boardData: BoardData, newBoard: Board) => {
   });
   return updatedBoard;
 };
-
-//delete a board
-export const deleteBoardImmer = (boardData: BoardData, boardName: string) => {
-  const updatedBoard = produce(boardData, draft => {
-    const boardIndex = draft.boards.findIndex(board => board.name === boardName);
-    draft.boards.splice(boardIndex, 1);
-  });
-  return updatedBoard;
-};
