@@ -13,14 +13,9 @@ import { addNewBoard, deleteBoardImmer } from "../src/utilities/immerFunctions";
 
 //New column button in boardview -- set up modal
 
-//three button menu - edit/delete board pop-up
 //Edit board modal
 
-//Delete modal theme - light/dark
-
 //validation for all forms
-
-//review sizing for modals in mobile views
 
 function App() {
   const themeContext = useContext(ThemeContext);

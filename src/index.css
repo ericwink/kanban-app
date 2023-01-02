@@ -197,7 +197,7 @@ button:hover {
   background-color: var(--clr-secondary-400) !important;
 }
 .btn-destructive:hover {
-  background-color: var(--clr-secondary-300);
+  background-color: var(--clr-secondary-300) !important;
 }
 
 /* modal class to center any modal elements on screen */
@@ -207,6 +207,10 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999;
+  min-height: fit-content;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* custom checkboxes */
@@ -284,7 +288,7 @@ textarea::placeholder {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: 99999;
 }
 
 #edit-delete-box .options-wrapper {
@@ -294,7 +298,7 @@ textarea::placeholder {
 #edit-delete-box .edit-delete {
   background: none;
   border: none;
-  min-width: fit-content;
+  min-width: 10px;
 }
 #edit-delete-box .edit-delete:hover {
   cursor: pointer;
@@ -665,7 +669,7 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 9999;
+  z-index: 9999999;
 }
 
 #navbar .floating-menu.dark {
@@ -819,6 +823,7 @@ textarea::placeholder {
     display: flex;
     gap: 24px;
     padding: 16px 24px;
+    height: calc(100vh - 96px);
   }
 
   #navbar {
