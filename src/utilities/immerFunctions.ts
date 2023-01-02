@@ -75,9 +75,13 @@ export let addColumn = (boardData: BoardData, boardIndex: number, columnName: st
 };
 
 //add a board
-export let addNewBoard = (boardData: BoardData, newBoard: Board) => {
+export let addNewBoard = (boardData: BoardData, newBoard: Board, index = -1) => {
   let updatedBoard = produce(boardData, draft => {
-    draft.boards.push(newBoard);
+    if (index < 0) {
+      draft.boards.push(newBoard);
+    } else {
+      draft.boards.splice(index, 0, newBoard);
+    }
   });
   return updatedBoard;
 };
@@ -89,4 +93,12 @@ export const deleteBoardImmer = (boardData: BoardData, boardName: string) => {
     draft.boards.splice(boardIndex, 1);
   });
   return updatedBoard;
+};
+
+//edit a board
+export const editBoardImmer = (boardData: BoardData, newBoard: Board, originalName: string) => {
+  const boardIndex = boardData.boards.findIndex(each => each.name === originalName);
+  const tempBoard = deleteBoardImmer(boardData, originalName);
+  const finalBoard = addNewBoard(tempBoard, newBoard, boardIndex);
+  return finalBoard;
 };

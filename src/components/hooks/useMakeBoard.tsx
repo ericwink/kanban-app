@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Columns } from "../../utilities/interface";
+import { Columns, Board } from "../../utilities/interface";
+import produce from "immer";
 
-let useMakeBoard = () => {
+let useMakeBoard = (boardData: Board | undefined) => {
   //state for the board name
-  const [boardName, setBoardName] = useState("");
+  const [boardName, setBoardName] = useState(boardData?.name || "");
 
   //state for the columns[]
-  const [columns, setColumns] = useState<Columns[]>([]);
+  const [columns, setColumns] = useState<Columns[]>(boardData?.columns || []);
 
   //column[] push object {name: 'name', tasks: []}
   let addColumn = () => {
@@ -21,8 +22,9 @@ let useMakeBoard = () => {
   };
 
   let updateColName = (index: number, name: string) => {
-    let copy = [...columns];
-    copy[index].name = name;
+    let copy = produce(columns, draft => {
+      draft[index].name = name;
+    });
     setColumns(copy);
   };
 

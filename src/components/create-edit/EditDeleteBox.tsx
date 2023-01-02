@@ -24,12 +24,19 @@ export default function EditDeleteBox({ setDeleteModal, setEditModal, type }: Pr
       </button>
       {showMenu ? (
         <div className={`edit-delete-wrapper ${themeContext?.theme}`}>
-          <button onClick={() => setEditModal(true)} className="edit-task body-m">
+          <button
+            onClick={() => {
+              setEditModal(true);
+              setShowMenu(false);
+            }}
+            className="edit-task body-m"
+          >
             {`Edit ${type}`}
           </button>
           <button
             onClick={() => {
               setDeleteModal(true);
+              setShowMenu(false);
             }}
             className="delete-task body-m"
           >
