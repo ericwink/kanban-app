@@ -898,12 +898,14 @@ textarea::placeholder {
     min-width: 261px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
     overflow: hidden;
     z-index: 2;
     background-color: var(--clr-neutral-100);
     border-right: 1px solid var(--clr-neutral-300);
     transform-origin: left;
+    padding: 35px 0;
   }
 
   #sidebar[data-sidebar="hidden"] {
@@ -983,23 +985,19 @@ textarea::placeholder {
   #sidebar img {
     height: 25px;
     width: 152px;
-    margin-top: 35px;
     margin-left: 26px;
   }
 
-  #sidebar #theme-toggle {
-    position: absolute;
-    bottom: 15%;
-  }
-
   #sidebar .hide-sidebar {
-    display: block;
     width: 100%;
-    position: absolute;
-    bottom: 8%;
     color: var(--clr-neutral-400);
     text-align: left;
     padding-left: 45px;
+  }
+
+  #sidebar .sidebar-inner-container {
+    display: flex;
+    flex-direction: column;
   }
 
   #sidebar button:hover {

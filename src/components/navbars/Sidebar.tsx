@@ -20,12 +20,16 @@ export default function Sidebar({ boardNames, visible, setVisible, sidebar, setS
   return (
     <>
       <div id="sidebar" data-sidebar={!sidebar ? "hidden" : "show"} className={themeContext?.theme}>
-        <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
-        <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} setShowAddBoard={setShowAddBoard} />
-        <ThemeToggle />
-        <button onClick={() => setSidebar(false)} className="hide-sidebar">
-          Hide Sidebar
-        </button>
+        <div className="sidebar-inner-container">
+          <img src={themeContext?.theme === "light" ? logodark : logolight} alt="Kanban Logo" />
+          <BoardList visible={visible} setVisible={setVisible} boardNames={boardNames} setShowAddBoard={setShowAddBoard} />
+        </div>
+        <div className="sidebar-inner-container">
+          <ThemeToggle />
+          <button onClick={() => setSidebar(false)} className="hide-sidebar">
+            Hide Sidebar
+          </button>
+        </div>
       </div>
       <button className="show-sidebar" onClick={() => setSidebar(true)}></button>
     </>
