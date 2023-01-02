@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className={`App ${themeContext?.theme}`}>
-      {showAddBoard ? <BoardModal setShowAddBoard={setShowAddBoard} addBoard={addBoard} /> : null}
+      {showAddBoard ? <BoardModal boardNames={boardNames} setShowAddBoard={setShowAddBoard} addBoard={addBoard} /> : null}
 
       <Sidebar setVisible={setVisible} visible={visible} boardNames={boardNames} sidebar={sidebar} setSidebar={setSidebar} setShowAddBoard={setShowAddBoard} />
 

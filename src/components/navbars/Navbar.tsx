@@ -64,7 +64,7 @@ export default function Navbar({ editBoard, boardData, visible, boardNames, setV
         </>
       )}
       {deleteModal ? <DeleteModal setDeleteModal={setDeleteModal} item="board" title={visible} removeItem={() => deleteBoard(visible)} /> : null}
-      {editModal ? <BoardModal boardData={findBoardData()} setShowAddBoard={setEditModal} addBoard={editBoard} /> : null}
+      {editModal ? <BoardModal boardNames={boardNames} boardData={findBoardData()} setShowAddBoard={setEditModal} addBoard={editBoard} /> : null}
     </div>
   );
 }
