@@ -32,6 +32,18 @@ export default function Boardview({ board, sidebar, boardIndex, setBoardData, bo
     setBoardData(result);
   };
 
+  if (!board.columns?.length) {
+    console.log("no data");
+    return (
+      <div id="empty-board" className={themeContext?.theme} data-sidebar={sidebar ? "show" : "hidden"}>
+        <h1>This board is empty. Create a new column to get started</h1>
+        <button onClick={newColumn} className="btn-l btn-primary">
+          + Add New column
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div id="board-view" data-sidebar={sidebar ? "show" : "hidden"}>
       {board.columns?.map((col, index) => {

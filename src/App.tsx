@@ -9,8 +9,6 @@ import { Board } from "../src/utilities/interface";
 import { addNewBoard, deleteBoardImmer } from "../src/utilities/immerFunctions";
 
 //to-do
-//Board is empty, create new column (boardlist view)
-
 //New column button in boardview -- set up modal
 
 //Edit board modal

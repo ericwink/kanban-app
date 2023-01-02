@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import EditDeleteBox from "../create-edit/EditDeleteBox";
 import DeleteModal from "../DeleteModal";
+import BoardModal from "../create-edit/BoardModal";
 
 type Props = {
   visible: string;

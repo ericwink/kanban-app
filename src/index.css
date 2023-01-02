@@ -291,6 +291,20 @@ textarea::placeholder {
   z-index: 99999;
 }
 
+#empty-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: calc(100vh - 60px);
+  transition: 0.5s;
+}
+
+#empty-board.dark {
+  color: var(--clr-neutral-100);
+}
+
 #edit-delete-box .options-wrapper {
   position: relative;
 }
@@ -316,7 +330,7 @@ textarea::placeholder {
   gap: 16px;
   z-index: 9999;
   background-color: var(--clr-neutral-300);
-  right: -6em;
+  left: 80%;
   margin-top: 10px;
 }
 
@@ -869,6 +883,11 @@ textarea::placeholder {
   }
   #board-view[data-sidebar="show"] {
     width: calc(100vw - 261px);
+  }
+
+  #empty-board[data-sidebar="show"] {
+    margin-left: 261px;
+    transition: 0.5s;
   }
 
   #sidebar {
