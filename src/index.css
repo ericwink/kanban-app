@@ -316,14 +316,15 @@ textarea::placeholder {
   color: var(--clr-neutral-100);
 }
 
-#edit-delete-box .options-wrapper {
-  position: relative;
+#edit-delete-box {
+  display: flex;
 }
 
 #edit-delete-box .edit-delete {
   background: none;
   border: none;
   min-width: 10px;
+  justify-self: center;
 }
 #edit-delete-box .edit-delete:hover {
   cursor: pointer;
@@ -342,7 +343,7 @@ textarea::placeholder {
   z-index: 9999;
   background-color: var(--clr-neutral-300);
   right: 1em;
-  margin-top: 10px;
+  top: 3em;
 }
 
 #edit-delete-box .edit-delete-wrapper.dark {
