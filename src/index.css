@@ -200,6 +200,10 @@ button:hover {
   background-color: var(--clr-secondary-300) !important;
 }
 
+.error-alert {
+  color: red;
+}
+
 /* modal class to center any modal elements on screen */
 .modal {
   position: fixed;

@@ -5,7 +5,7 @@ import TaskViewCard from "./TaskViewCard";
 
 type Props = {
   task: Tasks;
-  colNames: string[] | undefined;
+  colNames: string[];
   boardIndex: number;
   columnIndex: number;
   taskIndex: number;
@@ -17,7 +17,7 @@ export default function TaskPreviewCard({ task, colNames, taskIndex, boardIndex,
   const themeContext = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
 
-  const count = task.subtasks?.length;
+  const count = task.subtasks?.length || 0;
 
   //iterate through subtasks and return a count of total completed
   let completed = (subtask: Subtask[]) => {

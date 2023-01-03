@@ -7,6 +7,7 @@ let useMakeTask = (colNames: string[], task?: Tasks) => {
     title: task?.title || "",
     description: task?.description || "",
     status: task?.status || colNames[0],
+    subtasks: [],
   });
 
   let editNewTask = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {

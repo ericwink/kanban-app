@@ -52,7 +52,7 @@ export default function Boardview({ board, sidebar, boardIndex, setBoardData, bo
       <button onClick={newColumn} className={`heading-xl ${themeContext?.theme}`}>
         + New column
       </button>
-      {showAddTask ? <TaskModal showAddTask={showAddTask} setShowModal={setShowAddTask} colNames={colNames} returnTask={addNewTask} /> : null}
+      {showAddTask ? <TaskModal setShowModal={setShowAddTask} colNames={colNames} returnTask={addNewTask} /> : null}
     </div>
   );
 }
