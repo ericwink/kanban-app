@@ -48,7 +48,9 @@ export default function Navbar({ editBoard, boardData, visible, boardNames, setV
       <div className="inner-nav-box">
         <button
           onClick={() => {
-            setShowAddTask(true);
+            if (visible) {
+              setShowAddTask(true);
+            }
           }}
           className="add btn-primary"
         ></button>
