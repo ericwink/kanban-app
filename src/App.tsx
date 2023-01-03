@@ -18,6 +18,14 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [showAddBoard, setShowAddBoard] = useState(false);
 
+  //get window size, used to account for mobile screens and setting height for boardview
+  function getDocHeight() {
+    const doc = document.documentElement;
+    doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+  }
+  window.addEventListener("resize", getDocHeight);
+  getDocHeight();
+
   useEffect(() => {
     const boardArray = boardData.boards.map(board => board.name);
     setBoardNames([...boardArray]);
