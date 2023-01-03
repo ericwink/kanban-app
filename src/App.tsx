@@ -5,6 +5,7 @@ import Sidebar from "./components/navbars/Sidebar";
 import Navbar from "./components/navbars/Navbar";
 import data from "./data.json";
 import BoardModal from "./components/create-edit/BoardModal";
+import IntroModal from "./components/IntroModal";
 import { Board } from "../src/utilities/interface";
 import { addNewBoard, deleteBoardImmer, editBoardImmer } from "../src/utilities/immerFunctions";
 
@@ -50,6 +51,7 @@ function App() {
           return <Boardview boardIndex={index} board={board} key={board.name} sidebar={sidebar} setBoardData={setBoardData} boardData={boardData} showAddTask={showAddTask} setShowAddTask={setShowAddTask} />;
         }
       })}
+      <IntroModal />
     </div>
   );
 }

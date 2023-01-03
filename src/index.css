@@ -541,7 +541,8 @@ textarea::placeholder {
   min-width: 16px;
 }
 
-#delete-modal {
+#delete-modal,
+#intro-modal {
   width: 343px;
   border-radius: 6px;
   display: flex;
