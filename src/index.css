@@ -336,7 +336,7 @@ textarea::placeholder {
   gap: 16px;
   z-index: 9999;
   background-color: var(--clr-neutral-300);
-  left: 80%;
+  right: 1em;
   margin-top: 10px;
 }
 
@@ -633,7 +633,6 @@ textarea::placeholder {
 }
 
 #navbar #edit-delete-box .edit-delete-wrapper {
-  right: 0em;
   margin-top: 35px;
 }
 
