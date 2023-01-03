@@ -6,9 +6,10 @@ interface Props {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   setEditModal: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
+  active?: string;
 }
 
-export default function EditDeleteBox({ setDeleteModal, setEditModal, type }: Props) {
+export default function EditDeleteBox({ setDeleteModal, setEditModal, type, active = "true" }: Props) {
   const [showMenu, setShowMenu] = useState(false);
   const themeContext = useContext(ThemeContext);
 
@@ -17,7 +18,9 @@ export default function EditDeleteBox({ setDeleteModal, setEditModal, type }: Pr
       <button
         className="edit-delete"
         onClick={() => {
-          setShowMenu(!showMenu);
+          if (active) {
+            setShowMenu(!showMenu);
+          }
         }}
       >
         <img src={menu} alt="menu" />

@@ -54,7 +54,7 @@ export default function Navbar({ editBoard, boardData, visible, boardNames, setV
           }}
           className="add btn-primary"
         ></button>
-        <EditDeleteBox setDeleteModal={setDeleteModal} setEditModal={setEditModal} type="Board" />
+        <EditDeleteBox active={visible} setDeleteModal={setDeleteModal} setEditModal={setEditModal} type="Board" />
       </div>
       {!menu ? null : (
         <>
