@@ -37,7 +37,7 @@ Users should be able to:
 
 ### Video
 
-![](./screenshot.jpg)
+https://user-images.githubusercontent.com/105669475/210582988-4b373f22-2180-4e3e-a5ae-c63158914036.mov
 
 ### Links
 
