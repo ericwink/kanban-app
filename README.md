@@ -12,6 +12,7 @@ This is a solution to the [Kanban task management web app challenge on Frontend 
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
+    - [General Functionality](#general-functionality)
     - [What I learned](#what-i-learned)
     - [Continued development](#continued-development)
     - [Useful resources](#useful-resources)
@@ -53,6 +54,16 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
+
+### General Functionality
+
+The information for the user is housed in an object (data.json), which has additional layers nested within to provide information for boards, columns, tasks, subtasks. The object is loaded as state for the applicaiton, and we map through each level to pass the information down from parent components to children. App.tsx mapps through the Board objects and passes information down to the `<Boardview>` component, which provides the space to render the columns. `<Boardview>` maps through the column objects, rendering `<Column>` for each, which maps and renders `<TaskPreviewCard>`.
+
+Each `<TaskPreviewCard>` has a child, `<TaskViewCard>`, which onClick is rendered for the user to display additional information about the task, including subtasks, details, etc.
+
+Most of the functionality for making adjustments to the state is handled with the assistance of the Immer library, which simplifies the process of working with a deeply nested state. The Immer functions are housed in the utility folder, in the immerFunctions.ts file.
+
+Creating boards and tasks are handled in the respective modal components, `<BoardModal>` and `<TaskModal>`. The logic for both is extrapolated into custom hooks, useMakeBoard and useMakeTask. Each starts state either with board/task data that is passed to it, or with blank values. When the user saves their changes, a new object is created and passed back to the parent, which passes the data to the appropriate Immer function, updating and returning the entire object to be updated in state.
 
 ### What I learned
 
