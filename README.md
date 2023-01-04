@@ -43,6 +43,7 @@ https://user-images.githubusercontent.com/105669475/210582988-4b373f22-2180-4e3e
 
 - Solution URL: [GitHub](https://github.com/ericwink/kanban-app)
 - Live Site URL: [Kanban Task Tracker](https://kanban-ericwinkdev.netlify.app/)
+- Youtube Playlist of SOME of the work: [YouTube]([https://kanban-ericwinkdev.netlify.app/](https://www.youtube.com/playlist?list=PLwTM5eanI2-UPf03UI4dlhJ5btFMwi-Qh))
 
 ## My process
 
